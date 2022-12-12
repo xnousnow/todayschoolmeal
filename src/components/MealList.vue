@@ -1,4 +1,11 @@
 <script lang="ts">
+  import { IonIcon } from '@ionic/vue'
+  import {
+    clipboardOutline,
+    clipboardSharp,
+    warningOutline,
+    warningSharp,
+  } from 'ionicons/icons'
   import { defineComponent } from 'vue'
   export default defineComponent({
     props: {
@@ -7,9 +14,19 @@
       schoolCode: String,
       date: String,
     },
+    setup() {
+      return {
+        clipboardOutline,
+        clipboardSharp,
+        warningOutline,
+        warningSharp,
+      }
+    },
     data() {
       return {
         meal: [],
+        error: false,
+        errorCode: '000',
       }
     },
     methods: {
@@ -19,14 +36,24 @@
         )
           .then((response) => response.json())
           .then((data) => {
-            this.meal = data.mealServiceDietInfo[1].row[0].DDISH_NM.replaceAll(
-              / *((\()?[0-9.]+(\))?)?(흰죽 *\(환아용\) *(<br\/>)?)?\*?(김치양념)?(양념류)?((강화)?우유(\(우유급식\))?)?/g,
-              ''
-            )
-              .split(/<br\/>|, ?|\/|\\/g)
-              .filter((e: any) => {
-                return !!e
-              })
+            if (data.RESULT) {
+              this.error = true
+              this.errorCode = data.RESULT.CODE.replace(/\D/g, '')
+            } else {
+              this.error = false
+              this.meal =
+                data.mealServiceDietInfo[1].row[0].DDISH_NM.replaceAll(
+                  / *((\()?[0-9.]+(\))?)?(흰죽 *\(환아용\) *(<br\/>)?)?\*?(김치양념)?(양념류)?((강화)?우유(\(우유급식\))?)?/g,
+                  ''
+                )
+                  .split(/<br\/>|, ?|\/|\\/g)
+                  .filter((e: any) => {
+                    return !!e
+                  })
+            }
+          })
+          .catch(() => {
+            this.errorCode = 'Internal'
           })
       },
     },
@@ -47,13 +74,28 @@
         this.updateMeal()
       },
     },
+    components: {
+      IonIcon,
+    },
   })
 </script>
 
 <template>
-  <ul>
+  <ul v-if="!error">
     <li v-for="menu in meal" :key="menu">{{ menu }}</li>
   </ul>
+  <div v-else>
+    <ion-icon
+      :ios="clipboardOutline"
+      :md="clipboardSharp"
+      v-if="errorCode == '200'"
+    ></ion-icon>
+    <ion-icon :ios="warningOutline" :md="warningSharp" v-else></ion-icon>
+    <h1 v-if="!(errorCode == 'Internal')">급식을 불러올 수 없어요.</h1>
+    <h1 v-else>알 수 없는 오류가 일어났어요.</h1>
+    <p v-if="errorCode = '200'">급식 정보가 없어요. 선택된 날짜가 공휴일이나 방학인지 확인해 주세요.</p>
+    <p v-else-if="!(errorCode == 'Internal')">인터넷이 연결되어 있는지 확인해 주세요.</p>
+  </div>
 </template>
 
 <style scoped>
@@ -75,5 +117,20 @@
     ul {
       font-size: 30px;
     }
+  }
+  div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+  }
+  ion-icon {
+    font-size: 8rem;
+    color: var(--ion-color-primary);
+  }
+  h1 {
+    font-weight: bold;
   }
 </style>
