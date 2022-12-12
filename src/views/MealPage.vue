@@ -24,6 +24,8 @@
   } from 'ionicons/icons'
   import { defineComponent } from 'vue'
 
+  import MealList from '../components/MealList.vue'
+
   export default defineComponent({
     name: 'HomePage',
     components: {
@@ -38,6 +40,8 @@
       IonDatetime,
       IonDatetimeButton,
       IonModal,
+
+      MealList,
     },
     setup() {
       const isWeekday = (dateString: string) => {
@@ -112,14 +116,12 @@
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
-      <ul>
-        <li>머시기머시기</li>
-        <li>머시기머시기</li>
-        <li>머시기머시기</li>
-        <li>머시기머시기</li>
-        <li>머시기머시기</li>
-        <li>머시기머시기</li>
-      </ul>
+      <MealList
+        apikey="36c8f19f762644108af384935752556e"
+        cityCode="M10"
+        schoolCode="8021028"
+        :date="date.split('T')[0].replaceAll('-', '')"
+      />
       <div class="datepicker">
         <ion-button fill="clear" color="dark" @click="changeDate(-1)">
           <ion-icon
@@ -152,25 +154,6 @@
 </template>
 
 <style scoped>
-  ul {
-    list-style: none;
-    padding: 0;
-    position: absolute;
-    top: calc(50% - 30px);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-    margin-bottom: 10px;
-    font-weight: 500;
-    line-height: 1.2;
-    text-align: center;
-    width: 100%;
-  }
-  @media screen and (min-width: 375px) {
-    ul {
-      font-size: 30px;
-    }
-  }
   .datepicker {
     position: absolute;
     left: 50%;
