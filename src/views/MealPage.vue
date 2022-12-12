@@ -40,11 +40,17 @@
       IonModal,
     },
     setup() {
+      const isWeekday = (dateString: string) => {
+        const date = new Date(dateString)
+        const utcDay = date.getUTCDay()
+        return utcDay !== 0 && utcDay !== 6
+      }
       return {
         schoolOutline,
         schoolSharp,
         searchOutline,
         searchSharp,
+        isWeekday,
         chevronBackOutline,
         chevronBackSharp,
         chevronForwardOutline,
@@ -60,8 +66,16 @@
       changeDate(days: number): void {
         let date = new Date(this.date)
         date.setDate(date.getDate() + days)
+        if (date.getUTCDay() == 0) date.setDate(date.getDate() - 2)
+        if (date.getUTCDay() == 6) date.setDate(date.getDate() + 2)
         this.date = date.toISOString()
       },
+    },
+    mounted() {
+      let date = new Date()
+      if (date.getUTCDay() == 0) date.setDate(date.getDate() + 1)
+      if (date.getUTCDay() == 6) date.setDate(date.getDate() - 1)
+      this.date = date.toISOString()
     },
   })
 </script>
@@ -128,6 +142,7 @@
           id="datetime"
           :max="new Date(`${new Date().getFullYear() + 1}-12-31`).toISOString()"
           locale="ko-KR"
+          :is-date-enabled="isWeekday"
           presentation="date"
           v-model="date"
         ></ion-datetime>
