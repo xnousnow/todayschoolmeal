@@ -56,6 +56,13 @@
         date: new Date().toISOString(),
       }
     },
+    methods: {
+      changeDate(days: number): void {
+        let date = new Date(this.date)
+        date.setDate(date.getDate() + days)
+        this.date = date.toISOString()
+      },
+    },
   })
 </script>
 
@@ -100,7 +107,7 @@
         <li>머시기머시기</li>
       </ul>
       <div class="datepicker">
-        <ion-button fill="clear" color="dark">
+        <ion-button fill="clear" color="dark" @click="changeDate(-1)">
           <ion-icon
             :ios="chevronBackOutline"
             :md="chevronBackSharp"
@@ -108,7 +115,7 @@
           ></ion-icon>
         </ion-button>
         <ion-datetime-button datetime="datetime"></ion-datetime-button>
-        <ion-button fill="clear" color="dark">
+        <ion-button fill="clear" color="dark" @click="changeDate(1)">
           <ion-icon
             :ios="chevronForwardOutline"
             :md="chevronForwardSharp"
