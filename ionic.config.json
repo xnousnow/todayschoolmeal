@@ -1,0 +1,7 @@
+{
+  "name": "todayschoolmeal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
