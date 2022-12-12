@@ -1,0 +1,171 @@
+<script lang="ts">
+  import {
+    IonContent,
+    IonHeader,
+    IonPage,
+    IonTitle,
+    IonToolbar,
+    IonButtons,
+    IonButton,
+    IonIcon,
+    IonDatetime,
+    IonDatetimeButton,
+    IonModal,
+  } from '@ionic/vue'
+  import {
+    schoolOutline,
+    schoolSharp,
+    searchOutline,
+    searchSharp,
+    chevronBackOutline,
+    chevronBackSharp,
+    chevronForwardOutline,
+    chevronForwardSharp,
+  } from 'ionicons/icons'
+  import { defineComponent } from 'vue'
+
+  export default defineComponent({
+    name: 'HomePage',
+    components: {
+      IonContent,
+      IonHeader,
+      IonPage,
+      IonTitle,
+      IonToolbar,
+      IonButtons,
+      IonButton,
+      IonIcon,
+      IonDatetime,
+      IonDatetimeButton,
+      IonModal,
+    },
+    setup() {
+      return {
+        schoolOutline,
+        schoolSharp,
+        searchOutline,
+        searchSharp,
+        chevronBackOutline,
+        chevronBackSharp,
+        chevronForwardOutline,
+        chevronForwardSharp,
+      }
+    },
+    data() {
+      return {
+        date: new Date().toISOString(),
+      }
+    },
+  })
+</script>
+
+<template>
+  <ion-page>
+    <ion-header :translucent="true">
+      <ion-toolbar>
+        <ion-title>오늘뭐먹지</ion-title>
+        <ion-buttons slot="secondary" :collapse="true">
+          <ion-button>
+            <ion-icon :ios="schoolOutline" :md="schoolSharp"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="primary" :collapse="true">
+          <ion-button>
+            <ion-icon :ios="searchOutline" :md="searchSharp"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content :fullscreen="true">
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">오늘뭐먹지</ion-title>
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon :ios="schoolOutline" :md="schoolSharp"></ion-icon>
+            </ion-button>
+            <ion-button>
+              <ion-icon :ios="searchOutline" :md="searchSharp"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ul>
+        <li>머시기머시기</li>
+        <li>머시기머시기</li>
+        <li>머시기머시기</li>
+        <li>머시기머시기</li>
+        <li>머시기머시기</li>
+        <li>머시기머시기</li>
+      </ul>
+      <div class="datepicker">
+        <ion-button fill="clear" color="dark">
+          <ion-icon
+            :ios="chevronBackOutline"
+            :md="chevronBackSharp"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-button fill="clear" color="dark">
+          <ion-icon
+            :ios="chevronForwardOutline"
+            :md="chevronForwardSharp"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+      </div>
+      <ion-modal :keep-contents-mounted="true">
+        <ion-datetime
+          id="datetime"
+          :max="new Date(`${new Date().getFullYear() + 1}-12-31`).toISOString()"
+          locale="ko-KR"
+          presentation="date"
+          v-model="date"
+        ></ion-datetime>
+      </ion-modal>
+    </ion-content>
+  </ion-page>
+</template>
+
+<style scoped>
+  ul {
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    top: calc(50% - 30px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+  }
+  @media screen and (min-width: 375px) {
+    ul {
+      font-size: 30px;
+    }
+  }
+  .datepicker {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .datepicker ion-datetime-button {
+    transform: scale(120%);
+    font-size: 0.9em;
+  }
+  .datepicker ion-button {
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+</style>
