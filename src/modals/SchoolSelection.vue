@@ -2,15 +2,16 @@
   import {
     IonModal,
     IonHeader,
-    IonToolbar,
     IonTitle,
+    IonButtons,
+    IonButton,
+    IonToolbar,
     IonContent,
     IonList,
     IonCard,
     IonCardHeader,
     IonCardTitle,
     IonCardSubtitle,
-    IonButton,
   } from '@ionic/vue'
   import {} from 'ionicons/icons'
   import { defineComponent } from 'vue'
@@ -21,6 +22,8 @@
       IonModal,
       IonHeader,
       IonTitle,
+      IonButtons,
+      IonButton,
       IonToolbar,
       IonContent,
       IonList,
@@ -28,7 +31,6 @@
       IonCardHeader,
       IonCardTitle,
       IonCardSubtitle,
-      IonButton,
     },
   })
 </script>
@@ -37,6 +39,9 @@
   <ion-modal ref="modal" :trigger="trigger">
     <ion-header>
       <ion-toolbar>
+        <ion-buttons slot="secondary">
+          <ion-button @click="$emit('close')">취소</ion-button>
+        </ion-buttons>
         <ion-title>학교 선택</ion-title>
       </ion-toolbar>
       <ion-toolbar>
