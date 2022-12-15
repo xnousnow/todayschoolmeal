@@ -24,7 +24,8 @@
   } from 'ionicons/icons'
   import { defineComponent } from 'vue'
 
-  import MealList from '../components/MealList.vue'
+  import MealList from '@/components/MealList.vue'
+  import SchoolSelection from '@/modals/SchoolSelection.vue'
 
   export default defineComponent({
     name: 'HomePage',
@@ -42,6 +43,7 @@
       IonModal,
 
       MealList,
+      SchoolSelection,
     },
     setup() {
       const isWeekday = (dateString: string) => {
@@ -64,6 +66,7 @@
     data() {
       return {
         date: new Date().toISOString(),
+        schoolSelectionPresentingElement: null,
       }
     },
     methods: {
@@ -74,23 +77,30 @@
         if (date.getUTCDay() == 6) date.setDate(date.getDate() + 2)
         this.date = date.toISOString()
       },
+      dismissSchoolSelection(): void {
+        (this.$refs.schoolSelection as any).$el.dismiss()
+      },
+      openSchoolSelection(): void {
+        (this.$refs.schoolSelection as any).$el.present()
+      }
     },
     mounted() {
       let date = new Date()
       if (date.getUTCDay() == 0) date.setDate(date.getDate() + 1)
       if (date.getUTCDay() == 6) date.setDate(date.getDate() - 1)
       this.date = date.toISOString()
+      this.schoolSelectionPresentingElement = (this.$refs.page as any).$el;
     },
   })
 </script>
 
 <template>
-  <ion-page>
+  <ion-page ref="page">
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-title>오늘뭐먹지</ion-title>
         <ion-buttons slot="secondary" :collapse="true">
-          <ion-button>
+          <ion-button @click="openSchoolSelection()">
             <ion-icon :ios="schoolOutline" :md="schoolSharp"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -107,7 +117,7 @@
         <ion-toolbar>
           <ion-title size="large">오늘뭐먹지</ion-title>
           <ion-buttons slot="end">
-            <ion-button>
+            <ion-button @click="openSchoolSelection()">
               <ion-icon :ios="schoolOutline" :md="schoolSharp"></ion-icon>
             </ion-button>
             <ion-button>
@@ -149,6 +159,7 @@
           v-model="date"
         ></ion-datetime>
       </ion-modal>
+      <SchoolSelection ref="schoolSelection" trigger="open-school-selection" :presentingElement="schoolSelectionPresentingElement" @close="dismissSchoolSelection" />
     </ion-content>
   </ion-page>
 </template>
