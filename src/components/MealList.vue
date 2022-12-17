@@ -102,22 +102,6 @@
         : ''
     "
   />
-  <!-- <div>
-    <ion-icon
-      :ios="clipboardOutline"
-      :md="clipboardSharp"
-      v-if="errorCode == '200'"
-    ></ion-icon>
-    <ion-icon :ios="warningOutline" :md="warningSharp" v-else></ion-icon>
-    <h1 v-if="!(errorCode == 'Internal')">급식을 불러올 수 없어요.</h1>
-    <h1 v-else>알 수 없는 오류가 일어났어요.</h1>
-    <p v-if="(errorCode = '200')">
-      급식 정보가 없어요. 선택된 날짜가 공휴일이나 방학인지 확인해 주세요.
-    </p>
-    <p v-else-if="!(errorCode == 'Internal')">
-      인터넷이 연결되어 있는지 확인해 주세요.
-    </p>
-  </div> -->
 </template>
 
 <style scoped>
