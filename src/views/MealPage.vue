@@ -162,7 +162,6 @@
       </ion-modal>
       <SchoolSelection
         ref="schoolSelection"
-        trigger="open-school-selection"
         :presentingElement="schoolSelectionPresentingElement"
         @close="dismissSchoolSelection"
         :apikey="apikey"

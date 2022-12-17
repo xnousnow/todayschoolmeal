@@ -20,7 +20,7 @@
   import SimpleInfo from '../components/SimpleInfo.vue'
 
   export default defineComponent({
-    props: ['trigger', 'apikey'],
+    props: ['apikey'],
     components: {
       IonModal,
       IonHeader,
@@ -76,7 +76,7 @@
 </script>
 
 <template>
-  <ion-modal ref="modal" :trigger="trigger">
+  <ion-modal>
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="secondary">
