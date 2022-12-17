@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { IonIcon } from '@ionic/vue'
   import {
     clipboardOutline,
     clipboardSharp,
@@ -7,6 +6,8 @@
     warningSharp,
   } from 'ionicons/icons'
   import { defineComponent } from 'vue'
+
+  import SimpleInfo from './SimpleInfo.vue'
   export default defineComponent({
     props: {
       apikey: String,
@@ -75,7 +76,7 @@
       },
     },
     components: {
-      IonIcon,
+      SimpleInfo,
     },
   })
 </script>
@@ -84,7 +85,24 @@
   <ul v-if="!error">
     <li v-for="menu in meal" :key="menu">{{ menu }}</li>
   </ul>
-  <div v-else>
+  <SimpleInfo
+    v-else
+    :iosicon="errorCode == '200' ? clipboardOutline : warningOutline"
+    :mdicon="errorCode == '200' ? clipboardSharp : warningSharp"
+    :title="
+      !(errorCode == 'Internal')
+        ? '급식을 불러올 수 없어요.'
+        : '알 수 없는 오류가 일어났어요.'
+    "
+    :description="
+      (errorCode = '200')
+        ? '급식 정보가 없어요. 선택된 날짜가 공휴일이나 방학인지 확인해 주세요.'
+        : !(errorCode == 'Internal')
+        ? '인터넷이 연결되어 있는지 확인해 주세요.'
+        : ''
+    "
+  />
+  <!-- <div>
     <ion-icon
       :ios="clipboardOutline"
       :md="clipboardSharp"
@@ -93,9 +111,13 @@
     <ion-icon :ios="warningOutline" :md="warningSharp" v-else></ion-icon>
     <h1 v-if="!(errorCode == 'Internal')">급식을 불러올 수 없어요.</h1>
     <h1 v-else>알 수 없는 오류가 일어났어요.</h1>
-    <p v-if="errorCode = '200'">급식 정보가 없어요. 선택된 날짜가 공휴일이나 방학인지 확인해 주세요.</p>
-    <p v-else-if="!(errorCode == 'Internal')">인터넷이 연결되어 있는지 확인해 주세요.</p>
-  </div>
+    <p v-if="(errorCode = '200')">
+      급식 정보가 없어요. 선택된 날짜가 공휴일이나 방학인지 확인해 주세요.
+    </p>
+    <p v-else-if="!(errorCode == 'Internal')">
+      인터넷이 연결되어 있는지 확인해 주세요.
+    </p>
+  </div> -->
 </template>
 
 <style scoped>
@@ -124,13 +146,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    text-align: center;
   }
-  ion-icon {
+  /* ion-icon {
     font-size: 8rem;
     color: var(--ion-color-primary);
   }
   h1 {
     font-weight: bold;
-  }
+  } */
 </style>
