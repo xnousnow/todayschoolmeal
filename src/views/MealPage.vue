@@ -26,6 +26,7 @@
 
   import MealList from '@/components/MealList.vue'
   import SchoolSelection from '@/modals/SchoolSelection.vue'
+  import SimpleInfo from '@/components/SimpleInfo.vue'
 
   export default defineComponent({
     name: 'HomePage',
@@ -44,6 +45,7 @@
 
       MealList,
       SchoolSelection,
+      SimpleInfo,
     },
     setup() {
       const isWeekday = (dateString: string) => {
@@ -146,10 +148,20 @@
         </ion-toolbar>
       </ion-header>
       <MealList
+        v-if="cityCode && schoolCode"
+        class="center"
         :apikey="apikey"
         :cityCode="cityCode"
         :schoolCode="schoolCode"
         :date="date.split('T')[0].replaceAll('-', '')"
+      />
+      <SimpleInfo
+        v-else
+        class="center"
+        :iosicon="schoolOutline"
+        :mdicon="schoolSharp"
+        title="학교가 선택되지 않았어요."
+        description="오른쪽 위 학교 선택 버튼을 눌러 학교를 선택해 주세요."
       />
       <div class="datepicker">
         <ion-button fill="clear" color="dark" @click="changeDate(-1)">
@@ -208,5 +220,12 @@
   .datepicker ion-button {
     --padding-start: 0;
     --padding-end: 0;
+  }
+  .center {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
   }
 </style>

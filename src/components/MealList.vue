@@ -108,10 +108,6 @@
   ul {
     list-style: none;
     padding: 0;
-    position: absolute;
-    top: calc(50% - 30px);
-    left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 25px;
     margin-bottom: 10px;
     font-weight: 500;
