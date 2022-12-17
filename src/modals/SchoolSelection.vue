@@ -179,13 +179,16 @@
     padding: 0 4px 3px 4px !important;
   }
   ion-list {
-    padding-bottom: 120px;
+    margin-bottom: 150px;
   }
   p {
     text-align: center;
     margin: 0 10px;
     font-size: 11pt;
     color: var(--ion-color-medium-shade);
+  }
+  .md p {
+    margin-top: 30px;
   }
   .ios .SimpleInfo {
     height: calc(100% - 108px);
