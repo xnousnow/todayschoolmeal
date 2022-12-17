@@ -20,7 +20,9 @@
   import SimpleInfo from '../components/SimpleInfo.vue'
 
   export default defineComponent({
-    props: ['apikey'],
+    props: {
+      apikey: String
+    },
     components: {
       IonModal,
       IonHeader,
