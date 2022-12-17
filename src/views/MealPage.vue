@@ -65,6 +65,7 @@
     },
     data() {
       return {
+        apikey: '36c8f19f762644108af384935752556e',
         date: new Date().toISOString(),
         schoolSelectionPresentingElement: null,
       }
@@ -82,14 +83,14 @@
       },
       openSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.present()
-      }
+      },
     },
     mounted() {
       let date = new Date()
       if (date.getUTCDay() == 0) date.setDate(date.getDate() + 1)
       if (date.getUTCDay() == 6) date.setDate(date.getDate() - 1)
       this.date = date.toISOString()
-      this.schoolSelectionPresentingElement = (this.$refs.page as any).$el;
+      this.schoolSelectionPresentingElement = (this.$refs.page as any).$el
     },
   })
 </script>
@@ -127,7 +128,7 @@
         </ion-toolbar>
       </ion-header>
       <MealList
-        apikey="36c8f19f762644108af384935752556e"
+        :apikey="apikey"
         cityCode="M10"
         schoolCode="8021028"
         :date="date.split('T')[0].replaceAll('-', '')"
@@ -159,7 +160,13 @@
           v-model="date"
         ></ion-datetime>
       </ion-modal>
-      <SchoolSelection ref="schoolSelection" trigger="open-school-selection" :presentingElement="schoolSelectionPresentingElement" @close="dismissSchoolSelection" />
+      <SchoolSelection
+        ref="schoolSelection"
+        trigger="open-school-selection"
+        :presentingElement="schoolSelectionPresentingElement"
+        @close="dismissSchoolSelection"
+        :apikey="apikey"
+      />
     </ion-content>
   </ion-page>
 </template>

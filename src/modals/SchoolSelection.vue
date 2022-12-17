@@ -6,6 +6,7 @@
     IonButtons,
     IonButton,
     IonToolbar,
+    IonSearchbar,
     IonContent,
     IonList,
     IonCard,
@@ -13,11 +14,13 @@
     IonCardTitle,
     IonCardSubtitle,
   } from '@ionic/vue'
-  import {} from 'ionicons/icons'
+  import { searchOutline, searchSharp } from 'ionicons/icons'
   import { defineComponent } from 'vue'
 
+  import SimpleInfo from '../components/SimpleInfo.vue'
+
   export default defineComponent({
-    props: ['trigger'],
+    props: ['trigger', 'apikey'],
     components: {
       IonModal,
       IonHeader,
@@ -25,12 +28,49 @@
       IonButtons,
       IonButton,
       IonToolbar,
+      IonSearchbar,
       IonContent,
       IonList,
       IonCard,
       IonCardHeader,
       IonCardTitle,
       IonCardSubtitle,
+
+      SimpleInfo,
+    },
+    setup() {
+      return {
+        searchOutline,
+        searchSharp,
+      }
+    },
+    data() {
+      return {
+        error: false,
+        errorCode: '000',
+        searchedSchools: []
+      }
+    },
+    methods: {
+      searchSchool(event: Event) {
+        let query = (event.target as any).value
+        fetch(
+          `https://open.neis.go.kr/hub/schoolInfo?KEY=${this.apikey}&Type=json&SCHUL_NM=${query}&SCHUL_KND_SC_NM=초등학교`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.RESULT) {
+              this.error = true
+              this.errorCode = data.RESULT.CODE.replace(/\D/g, '')
+            } else {
+              this.error = false
+              this.searchedSchools = data.schoolInfo[1].row
+            }
+          })
+          .catch(() => {
+            this.errorCode = 'Internal'
+          })
+      },
     },
   })
 </script>
@@ -48,26 +88,41 @@
         <ion-searchbar
           show-clear-button="focus"
           placeholder="초등학교 이름을 입력하세요"
+          :debounce="1000"
+          @ionChange="searchSchool($event)"
         ></ion-searchbar>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list>
-        <ion-card>
+      <ion-list v-if="!error && !(searchedSchools.length == 0)">
+        <ion-card v-for="school in searchedSchools" :key="(school as any).SD_SCHUL_CODE">
           <ion-card-header>
-            <ion-card-title>국원초등학교</ion-card-title>
-            <ion-card-subtitle>충청북도 충주시 국원초1길 47</ion-card-subtitle>
+            <ion-card-title>{{ (school as any).SCHUL_NM }}</ion-card-title>
+            <ion-card-subtitle>{{ (school as any).ORG_RDNMA }}</ion-card-subtitle>
           </ion-card-header>
           <ion-button fill="clear">이 학교로 선택</ion-button>
         </ion-card>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>성남초등학교</ion-card-title>
-            <ion-card-subtitle>충청북도 충주시 염밭로 101</ion-card-subtitle>
-          </ion-card-header>
-          <ion-button fill="clear">이 학교로 선택</ion-button>
-        </ion-card>
+        <p>찾는 학교가 없나요?<br>지역명이 붙은 공식 이름으로 검색해 보세요.</p>
       </ion-list>
+      <SimpleInfo
+        :iosicon="(searchOutline as any)"
+        :mdicon="(searchSharp as any)"
+        :title="
+          errorCode == '200'
+            ? '학교를 찾을 수 없어요.'
+            : errorCode == '000' || searchedSchools.length == 0
+            ? '학교 이름을 검색해 주세요.'
+            : '알 수 없는 오류가 일어났어요.'
+        "
+        :description="
+          errorCode == '200'
+            ? '맞춤법을 확인해 주세요.'
+            : errorCode == '000' || searchedSchools.length == 0
+            ? '학교를 검색하면 결과가 나와요.'
+            : '인터넷이 연결되어 있는지 확인해 주세요.'
+        "
+        v-else
+      />
     </ion-content>
   </ion-modal>
 </template>
@@ -87,5 +142,14 @@
   }
   ion-searchbar.ios {
     padding: 0 4px 3px 4px !important;
+  }
+  ion-list {
+    padding-bottom: 120px;
+  }
+  p {
+    text-align: center;
+    margin: 0 10px;
+    font-size: 11pt;
+    color: var(--ion-color-medium-shade);
   }
 </style>
