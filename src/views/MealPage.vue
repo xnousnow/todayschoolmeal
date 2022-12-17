@@ -208,14 +208,9 @@
     bottom: 50px;
     transform: translateX(-50%);
     display: flex;
-    gap: 15px;
     width: 100%;
     justify-content: center;
     align-items: center;
-  }
-  .datepicker ion-datetime-button {
-    transform: scale(120%);
-    font-size: 0.9em;
   }
   .datepicker ion-button {
     --padding-start: 0;
