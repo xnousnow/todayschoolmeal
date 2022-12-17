@@ -30,7 +30,7 @@
       }
     },
     methods: {
-      updateMeal() {
+      updateMeal(): void {
         fetch(
           `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${this.apikey}&Type=json&ATPT_OFCDC_SC_CODE=${this.cityCode}&SD_SCHUL_CODE=${this.schoolCode}&MLSV_YMD=${this.date}`
         )

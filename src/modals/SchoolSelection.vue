@@ -55,7 +55,7 @@
       }
     },
     methods: {
-      searchSchool(event: Event) {
+      searchSchool(event: Event): void {
         let query = (event.target as any).value
         fetch(
           `https://open.neis.go.kr/hub/schoolInfo?KEY=${this.apikey}&Type=json&SCHUL_NM=${query}&SCHUL_KND_SC_NM=초등학교`
@@ -74,7 +74,7 @@
             this.errorCode = 'Internal'
           })
       },
-      async selectSchool(cityCode: string, schoolCode: string, schoolName: string) {
+      async selectSchool(cityCode: string, schoolCode: string, schoolName: string): Promise<void> {
         this.$emit('changeSchool', cityCode, schoolCode)
         this.$emit('close')
         let toast = await toastController.create({
@@ -82,7 +82,7 @@
           duration: 1500,
           position: 'bottom'
         })
-        await toast.present();
+        await toast.present()
       }
     },
   })

@@ -81,11 +81,11 @@
         if (date.getUTCDay() == 6) date.setDate(date.getDate() + 2)
         this.date = date.toISOString()
       },
-      dismissSchoolSelection(): void {
-        (this.$refs.schoolSelection as any).$el.dismiss()
-      },
       openSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.present()
+      },
+      dismissSchoolSelection(): void {
+        (this.$refs.schoolSelection as any).$el.dismiss()
       },
       changeSchool(cityCode: string, schoolCode: string): void {
         this.cityCode = cityCode
