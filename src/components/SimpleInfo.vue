@@ -44,5 +44,6 @@
     margin: 0;
     font-size: 11pt;
     color: var(--ion-color-medium-shade);
+    text-align: center;
   }
 </style>
