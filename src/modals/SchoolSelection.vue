@@ -13,6 +13,7 @@
     IonCardHeader,
     IonCardTitle,
     IonCardSubtitle,
+    toastController,
   } from '@ionic/vue'
   import { searchOutline, searchSharp } from 'ionicons/icons'
   import { defineComponent } from 'vue'
@@ -73,6 +74,14 @@
             this.errorCode = 'Internal'
           })
       },
+      async selectSchool(schoolName: string) {
+        let toast = await toastController.create({
+          message: `학교가 ${schoolName}로 선택되었어요.`,
+          duration: 1500,
+          position: 'bottom'
+        })
+        await toast.present();
+      }
     },
   })
 </script>
@@ -102,7 +111,7 @@
             <ion-card-title>{{ (school as any).SCHUL_NM }}</ion-card-title>
             <ion-card-subtitle>{{ (school as any).ORG_RDNMA }}</ion-card-subtitle>
           </ion-card-header>
-          <ion-button fill="clear">이 학교로 선택</ion-button>
+          <ion-button fill="clear" @click="selectSchool((school as any).SCHUL_NM)">이 학교로 선택</ion-button>
         </ion-card>
         <p>찾는 학교가 없나요?<br>지역명이 붙은 공식 이름으로 검색해 보세요.</p>
       </ion-list>
