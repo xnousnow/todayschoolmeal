@@ -92,7 +92,7 @@
         this.schoolCode = schoolCode
         localStorage.setItem('cityCode', cityCode)
         localStorage.setItem('schoolCode', schoolCode)
-      }
+      },
     },
     mounted() {
       let date = new Date()
@@ -102,7 +102,9 @@
       this.schoolSelectionPresentingElement = (this.$refs.page as any).$el
 
       let storedCityCode: string = localStorage.getItem('cityCode') as string
-      let storedSchoolCode: string = localStorage.getItem('schoolCode') as string
+      let storedSchoolCode: string = localStorage.getItem(
+        'schoolCode'
+      ) as string
       if (storedCityCode && storedSchoolCode) {
         this.cityCode = storedCityCode
         this.schoolCode = storedSchoolCode
