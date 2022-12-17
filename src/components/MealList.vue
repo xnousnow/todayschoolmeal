@@ -127,11 +127,4 @@
     transform: translate(-50%, -50%);
     width: 80%;
   }
-  /* ion-icon {
-    font-size: 8rem;
-    color: var(--ion-color-primary);
-  }
-  h1 {
-    font-weight: bold;
-  } */
 </style>
