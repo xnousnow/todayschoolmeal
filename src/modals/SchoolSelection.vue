@@ -118,6 +118,7 @@
         <p>찾는 학교가 없나요?<br>지역명이 붙은 공식 이름으로 검색해 보세요.</p>
       </ion-list>
       <SimpleInfo
+        class="SimpleInfo"
         :iosicon="(searchOutline as any)"
         :mdicon="(searchSharp as any)"
         :title="
@@ -164,5 +165,11 @@
     margin: 0 10px;
     font-size: 11pt;
     color: var(--ion-color-medium-shade);
+  }
+  .ios .SimpleInfo {
+    height: calc(100% - 108px);
+  }
+  .md .SimpleInfo {
+    height: calc(100% - 112px);
   }
 </style>

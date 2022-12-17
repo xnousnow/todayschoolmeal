@@ -30,12 +30,6 @@ div {
   flex-direction: column;
   gap: 4px;
 }
-.ios div {
-  height: calc(100% - 108px);
-}
-.md div {
-  height: calc(100% - 112px);
-}
 ion-icon {
   color: var(--ion-color-medium-shade);
   font-size: 3.8rem;
