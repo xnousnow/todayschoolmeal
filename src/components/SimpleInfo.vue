@@ -51,11 +51,4 @@ p {
   font-size: 11pt;
   color: var(--ion-color-medium-shade);
 }
-img {
-  position: absolute;
-  opacity: 0.3;
-  z-index: 999;
-  top: -80px;
-  left: 0;
-}
 </style>
