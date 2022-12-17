@@ -65,8 +65,11 @@
     },
     data() {
       return {
-        apikey: '36c8f19f762644108af384935752556e',
         date: new Date().toISOString(),
+        cityCode: '',
+        schoolCode: '',
+
+        apikey: '36c8f19f762644108af384935752556e',
         schoolSelectionPresentingElement: null,
       }
     },
@@ -84,6 +87,12 @@
       openSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.present()
       },
+      changeSchool(cityCode: string, schoolCode: string): void {
+        this.cityCode = cityCode
+        this.schoolCode = schoolCode
+        localStorage.setItem('cityCode', cityCode)
+        localStorage.setItem('schoolCode', schoolCode)
+      }
     },
     mounted() {
       let date = new Date()
@@ -91,6 +100,13 @@
       if (date.getUTCDay() == 6) date.setDate(date.getDate() - 1)
       this.date = date.toISOString()
       this.schoolSelectionPresentingElement = (this.$refs.page as any).$el
+
+      let storedCityCode: string = localStorage.getItem('cityCode') as string
+      let storedSchoolCode: string = localStorage.getItem('schoolCode') as string
+      if (storedCityCode && storedSchoolCode) {
+        this.cityCode = storedCityCode
+        this.schoolCode = storedSchoolCode
+      }
     },
   })
 </script>
@@ -129,8 +145,8 @@
       </ion-header>
       <MealList
         :apikey="apikey"
-        cityCode="M10"
-        schoolCode="8021028"
+        :cityCode="cityCode"
+        :schoolCode="schoolCode"
         :date="date.split('T')[0].replaceAll('-', '')"
       />
       <div class="datepicker">
@@ -164,6 +180,7 @@
         ref="schoolSelection"
         :presentingElement="schoolSelectionPresentingElement"
         @close="dismissSchoolSelection"
+        @changeSchool="changeSchool"
         :apikey="apikey"
       />
     </ion-content>

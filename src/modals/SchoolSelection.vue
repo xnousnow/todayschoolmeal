@@ -74,7 +74,9 @@
             this.errorCode = 'Internal'
           })
       },
-      async selectSchool(schoolName: string) {
+      async selectSchool(cityCode: string, schoolCode: string, schoolName: string) {
+        this.$emit('changeSchool', cityCode, schoolCode)
+        this.$emit('close')
         let toast = await toastController.create({
           message: `학교가 ${schoolName}로 선택되었어요.`,
           duration: 1500,
@@ -111,7 +113,7 @@
             <ion-card-title>{{ (school as any).SCHUL_NM }}</ion-card-title>
             <ion-card-subtitle>{{ (school as any).ORG_RDNMA }}</ion-card-subtitle>
           </ion-card-header>
-          <ion-button fill="clear" @click="selectSchool((school as any).SCHUL_NM)">이 학교로 선택</ion-button>
+          <ion-button fill="clear" @click="selectSchool((school as any).ATPT_OFCDC_SC_CODE, (school as any).SD_SCHUL_CODE, (school as any).SCHUL_NM)">이 학교로 선택</ion-button>
         </ion-card>
         <p>찾는 학교가 없나요?<br>지역명이 붙은 공식 이름으로 검색해 보세요.</p>
       </ion-list>
