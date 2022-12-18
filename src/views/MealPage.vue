@@ -9,7 +9,6 @@
     IonButton,
     IonIcon,
     IonDatetime,
-    IonDatetimeButton,
     IonModal,
   } from '@ionic/vue'
   import {
@@ -40,7 +39,6 @@
       IonButton,
       IonIcon,
       IonDatetime,
-      IonDatetimeButton,
       IonModal,
 
       MealList,
@@ -83,6 +81,9 @@
         if (date.getUTCDay() == 6) date.setDate(date.getDate() + 2)
         this.date = date.toISOString()
       },
+      openDatepickerModal(): void {
+        (this.$refs.datepickerModal as any).$el.present()
+      },
       openSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.present()
       },
@@ -94,6 +95,17 @@
         this.schoolCode = schoolCode
         localStorage.setItem('cityCode', cityCode)
         localStorage.setItem('schoolCode', schoolCode)
+      },
+    },
+    computed: {
+      formattedDate(): string {
+        const date = new Date(this.date)
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const weekday = ['일', '월', '화', '수', '목', '금', '토'][
+          date.getDay()
+        ]
+        return `${month}월 ${day}일 (${weekday})`
       },
     },
     mounted() {
@@ -171,7 +183,9 @@
             slot="icon-only"
           ></ion-icon>
         </ion-button>
-        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <button @click="openDatepickerModal()">
+          <ion-label>{{ formattedDate }}</ion-label>
+        </button>
         <ion-button fill="clear" color="dark" @click="changeDate(1)">
           <ion-icon
             :ios="chevronForwardOutline"
@@ -180,7 +194,7 @@
           ></ion-icon>
         </ion-button>
       </div>
-      <ion-modal :keep-contents-mounted="true">
+      <ion-modal :keep-contents-mounted="true" ref="datepickerModal">
         <ion-datetime
           id="datetime"
           :max="new Date(`${new Date().getFullYear() + 1}-12-31`).toISOString()"
@@ -215,6 +229,29 @@
   .datepicker ion-button {
     --padding-start: 0;
     --padding-end: 0;
+  }
+  .datepicker button {
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: var(--ion-color-step-300, #edeef0);
+  }
+  ion-modal {
+    --ion-background-color: transparent;
+  }
+  ion-modal ion-datetime {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 14px;
+    width: auto;
+  }
+  @media screen and (max-width: 350px) {
+    ion-modal ion-datetime {
+      width: 100vw;
+      border-radius: 0;
+    }
   }
   .center {
     position: absolute;
