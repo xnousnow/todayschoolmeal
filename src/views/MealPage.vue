@@ -242,7 +242,7 @@
     border-radius: 8px;
     background-color: var(--ion-color-step-300, #edeef0);
   }
-  ion-modal {
+  ion-modal:has(ion-datetime) {
     --ion-background-color: transparent;
   }
   ion-modal ion-datetime {
