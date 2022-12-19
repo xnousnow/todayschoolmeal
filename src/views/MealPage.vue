@@ -85,7 +85,6 @@
         (this.$refs.datepickerModal as any).$el.present()
       },
       dismissDatepickerModal(e: Event): void {
-        console.log(e.target, (this.$refs.datepicker as any).$el)
         if (e.target != (this.$refs.datepicker as any).$el) {
           (this.$refs.datepickerModal as any).$el.dismiss()
         }
