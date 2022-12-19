@@ -10,6 +10,7 @@
     IonIcon,
     IonDatetime,
     IonModal,
+    IonLabel,
   } from '@ionic/vue'
   import {
     schoolOutline,
@@ -40,6 +41,7 @@
       IonIcon,
       IonDatetime,
       IonModal,
+      IonLabel,
 
       MealList,
       SchoolSelection,
