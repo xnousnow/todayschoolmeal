@@ -8,6 +8,8 @@
   import { defineComponent } from 'vue'
 
   import SimpleInfo from './SimpleInfo.vue'
+  import importedFilterData from '../filterData'
+
   export default defineComponent({
     props: {
       apikey: String,
@@ -25,9 +27,10 @@
     },
     data() {
       return {
-        meal: [],
+        meal: [] as Array<string>,
         error: false,
         errorCode: '000',
+        filterData: importedFilterData,
       }
     },
     methods: {
@@ -42,20 +45,43 @@
               this.errorCode = data.RESULT.CODE.replace(/\D/g, '')
             } else {
               this.error = false
-              this.meal =
-                data.mealServiceDietInfo[1].row[0].DDISH_NM.replaceAll(
-                  /[ @]*((\()?[0-9.]+(\))?)?(흰죽 *\(환아용\) *(<br\/>)?)?\*?(김치양념)?(양념류)?(\(?(강화|저지방|고칼슘)?우유(급식)? ?(\((우유)?(급식)?\))?\)?)?(\([A-za-z+]*\))?[csO+]*/g,
-                  ''
-                )
-                  .split(/<br\/>|, ?|\/|\\/g)
-                  .filter((e: any) => {
-                    return !!e
-                  })
+              let meal = data.mealServiceDietInfo[1].row[0].DDISH_NM.replaceAll(
+                /[ @]*((\()?[0-9.]+(\))?)?(흰죽 *\(환아용\) *(<br\/>)?)?\*?(김치양념)?(양념류)?(\(?(강화|저지방|고칼슘)?우유(급식)? ?(\((우유)?(급식)?\))?\)?)?(\([A-za-z+]*\))?[csO+]*/g,
+                ''
+              )
+                .split(/<br\/>|, ?|\/|\\/g)
+                .filter((e: any) => {
+                  return !!e
+                })
+              this.meal = this.filterMeal(meal)
             }
           })
           .catch(() => {
             this.errorCode = 'Internal'
           })
+      },
+      filterMeal(meal: Array<string>): Array<string> {
+        let filteredMeal: Array<string> = meal
+        let filteredWord = ''
+        let i = 0
+        filteredMeal.forEach((menu) => {
+          filteredWord = ''
+          this.filterData.forEach((filter) => {
+            if (
+              menu.includes(filter.name) &&
+              !filteredWord.includes(filter.name)
+            ) {
+              filteredMeal[i] = menu.replace(
+                filter.name,
+                `<span style="background: linear-gradient(to bottom, transparent 50%, rgb(171, 222, 230) 50%)">${filter.name}</span>`
+              )
+              filteredWord += filter.name
+            }
+          })
+          i++
+        })
+        console.log(filteredMeal)
+        return filteredMeal
       },
     },
     mounted() {
@@ -83,7 +109,7 @@
 
 <template>
   <ul v-if="!error">
-    <li v-for="menu in meal" :key="menu">{{ menu }}</li>
+    <li v-for="menu in meal" :key="menu" v-html="menu"></li>
   </ul>
   <SimpleInfo
     v-else
