@@ -246,6 +246,7 @@
   }
   ion-modal:has(ion-datetime) {
     --ion-background-color: transparent;
+    --box-shadow: none;
   }
   ion-modal ion-datetime {
     position: absolute;
