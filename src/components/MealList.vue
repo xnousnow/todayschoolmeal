@@ -31,6 +31,14 @@
         error: false,
         errorCode: '000',
         filterData: importedFilterData,
+        highlighterColors: [
+          '#fdba74',
+          '#fde047',
+          '#bef264',
+          '#7dd3fc',
+          '#c4b5fd',
+          '#f9a8d4',
+        ],
       }
     },
     methods: {
@@ -64,6 +72,7 @@
         let filteredMeal: Array<string> = meal
         let filteredWord = ''
         let i = 0
+        let previousHighlighterColor = ''
         filteredMeal.forEach((menu) => {
           filteredWord = ''
           this.filterData.forEach((filter) => {
@@ -71,9 +80,17 @@
               menu.includes(filter.name) &&
               !filteredWord.includes(filter.name)
             ) {
+              let randomHighlighterColor = ''
+              do {
+                randomHighlighterColor =
+                  this.highlighterColors[
+                    Math.floor(Math.random() * this.highlighterColors.length)
+                  ]
+              } while (randomHighlighterColor == previousHighlighterColor)
+              previousHighlighterColor = randomHighlighterColor
               filteredMeal[i] = menu.replace(
                 filter.name,
-                `<span style="background: linear-gradient(to bottom, transparent 50%, #abdee6 50%)">${filter.name}</span>`
+                `<span style="background: linear-gradient(to bottom, transparent 50%, ${randomHighlighterColor} 50%)">${filter.name}</span>`
               )
               filteredWord += filter.name
             }
