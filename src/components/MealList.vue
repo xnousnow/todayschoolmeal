@@ -73,7 +73,7 @@
             ) {
               filteredMeal[i] = menu.replace(
                 filter.name,
-                `<span style="background: linear-gradient(to bottom, transparent 50%, rgb(171, 222, 230) 50%)">${filter.name}</span>`
+                `<span style="background: linear-gradient(to bottom, transparent 50%, #abdee6 50%)">${filter.name}</span>`
               )
               filteredWord += filter.name
             }
