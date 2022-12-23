@@ -16,22 +16,19 @@
 <style scoped>
   span {
     position: relative;
+    z-index: 1;
   }
-  .ios span::after {
+  span::after {
     content: '';
     position: absolute;
     bottom: -1px;
     left: 0;
     width: 100%;
-    height: 5px;
+    height: 10px;
+    z-index: -1;
     background-color: var(--highlighter-color);
-    border-radius: 10px;
   }
-  .md span {
-    background: linear-gradient(
-      to bottom,
-      transparent 80%,
-      var(--highlighter-color) 80%
-    );
+  .ios span::after {
+    border-radius: 3px;
   }
 </style>
