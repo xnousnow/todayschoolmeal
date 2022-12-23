@@ -9,6 +9,13 @@
 
   import SimpleInfo from './SimpleInfo.vue'
   import importedFilterData from '../filterData'
+  import FilteredMenu from './FilteredMenu.vue'
+
+  interface menuPart {
+    name: any
+    isFilteredMenu: boolean
+    highlighterColor: string
+  }
 
   export default defineComponent({
     props: {
@@ -27,7 +34,7 @@
     },
     data() {
       return {
-        meal: [] as Array<string>,
+        meal: [] as Array<Array<menuPart>>,
         error: false,
         errorCode: '000',
         filterData: importedFilterData,
@@ -68,33 +75,42 @@
             this.errorCode = 'Internal'
           })
       },
-      filterMeal(meal: Array<string>): Array<string> {
-        let filteredMeal: Array<string> = meal
+      filterMeal(meal: Array<string>): Array<Array<menuPart>> {
+        let filteredMeal: Array<Array<menuPart>> = new Array(meal.length)
         let filteredWord = ''
         let i = 0
-        let previousHighlighterColor = ''
-        filteredMeal.forEach((menu) => {
+        meal.forEach((menu) => {
           filteredWord = ''
+          let filteredMenu: any = menu
           this.filterData.forEach((filter) => {
             if (
               menu.includes(filter.name) &&
               !filteredWord.includes(filter.name)
             ) {
-              let randomHighlighterColor = ''
-              do {
-                randomHighlighterColor =
-                  this.highlighterColors[
-                    Math.floor(Math.random() * this.highlighterColors.length)
-                  ]
-              } while (randomHighlighterColor == previousHighlighterColor)
-              previousHighlighterColor = randomHighlighterColor
-              filteredMeal[i] = menu.replace(
+              filteredMenu = filteredMenu.replaceAll(
                 filter.name,
-                `<span style="background: linear-gradient(to bottom, transparent 50%, ${randomHighlighterColor} 50%)">${filter.name}</span>`
+                `[${filter.name}]`
               )
               filteredWord += filter.name
             }
           })
+          let previousHighlighterColor = ''
+          filteredMenu = filteredMenu.split(/(\[.{1}\])/g).map((e: any) => {
+            let randomHighlighterColor = ''
+            do {
+              randomHighlighterColor =
+                this.highlighterColors[
+                  Math.floor(Math.random() * this.highlighterColors.length)
+                ]
+            } while (randomHighlighterColor == previousHighlighterColor)
+            previousHighlighterColor = randomHighlighterColor
+            return {
+              name: e.replace(/\[|\]/g, ''),
+              isFilteredMenu: e.includes('['),
+              highlighterColor: randomHighlighterColor,
+            }
+          })
+          filteredMeal[i] = filteredMenu
           i++
         })
         console.log(filteredMeal)
@@ -120,13 +136,23 @@
     },
     components: {
       SimpleInfo,
+      FilteredMenu,
     },
   })
 </script>
 
 <template>
   <ul v-if="!error">
-    <li v-for="menu in meal" :key="menu" v-html="menu"></li>
+    <li v-for="menu in meal" :key="menu[0].name">
+      <template v-for="part in menu" :key="part.name">
+        <FilteredMenu
+          v-if="part.isFilteredMenu"
+          :highlighterColor="part.highlighterColor"
+          :word="part.name"
+        />
+        <span v-else>{{ part.name }}</span>
+      </template>
+    </li>
   </ul>
   <SimpleInfo
     v-else
@@ -169,5 +195,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
+  }
+  filtered-menu {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      var(--highlighter-color) 50%
+    );
   }
 </style>
