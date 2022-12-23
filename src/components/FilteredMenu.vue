@@ -8,7 +8,13 @@
 </script>
 
 <template>
-  <span :style="{ '--highlighter-color': `var(${highlighterColor})` }">
+  <span
+    :style="{
+      '--highlighter-color': `var(--ion-color-${highlighterColor})`,
+      '--highlighter-color-tint': `var(--ion-color-${highlighterColor}-tint)`,
+      '--highlighter-color-shade': `var(--ion-color-${highlighterColor}-shade)`,
+    }"
+  >
     {{ word }}
   </span>
 </template>
@@ -17,6 +23,7 @@
   span {
     position: relative;
     z-index: 1;
+    cursor: pointer;
   }
   span::after {
     content: '';
@@ -30,5 +37,11 @@
   }
   .ios span::after {
     border-radius: 3px;
+  }
+  span:hover::after {
+    background-color: var(--highlighter-color-tint);
+  }
+  span:focus::after {
+    background-color: var(--highlighter-color-shade);
   }
 </style>
