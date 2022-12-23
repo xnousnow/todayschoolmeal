@@ -39,12 +39,12 @@
         errorCode: '000',
         filterData: importedFilterData,
         highlighterColors: [
-          '#fdba74',
-          '#fde047',
-          '#bef264',
-          '#7dd3fc',
-          '#c4b5fd',
-          '#f9a8d4',
+          '--ion-color-primary',
+          '--ion-color-secondary',
+          '--ion-color-tertiary',
+          '--ion-color-success',
+          '--ion-color-warning',
+          '--ion-color-danger',
         ],
       }
     },

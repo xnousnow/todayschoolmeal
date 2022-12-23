@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <span :style="{ '--highlighter-color': highlighterColor }">
+  <span :style="{ '--highlighter-color': `var(${highlighterColor})` }">
     {{ word }}
   </span>
 </template>
