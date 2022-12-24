@@ -3,6 +3,7 @@
     IonModal,
     IonHeader,
     IonToolbar,
+    IonTitle,
     IonButtons,
     IonButton,
     IonContent,
@@ -29,6 +30,7 @@
       IonModal,
       IonHeader,
       IonToolbar,
+      IonTitle,
       IonButtons,
       IonButton,
       IonContent,
@@ -40,6 +42,7 @@
   <ion-modal>
     <ion-header>
       <ion-toolbar>
+        <ion-title>재료 정보</ion-title>
         <ion-buttons slot="secondary">
           <ion-button @click="$emit('close')">닫기</ion-button>
         </ion-buttons>
