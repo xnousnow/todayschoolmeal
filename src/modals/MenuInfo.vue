@@ -1,8 +1,5 @@
 <script lang="ts">
-  import {
-    IonModal,
-    IonContent,
-  } from '@ionic/vue'
+  import { IonModal, IonContent } from '@ionic/vue'
   import { defineComponent } from 'vue'
 
   import importedFilterData from '@/filterData'
@@ -52,15 +49,21 @@
 </template>
 
 <style scoped>
+  ion-modal {
+    overflow-y: hidden;
+    height: 100vh;
+  }
   .carousel {
     display: flex;
     flex-direction: row;
     scroll-snap-type: x mandatory;
     overflow-x: scroll;
     overflow-y: hidden;
-    background-color: var(--ion-color-step-300, #edeef0);
     scroll-behavior: smooth;
     align-items: center;
+  }
+  .ios .carousel {
+    background-color: var(--ion-color-step-300, #edeef0);
   }
   .carousel div {
     scroll-snap-align: start;
@@ -71,7 +74,7 @@
     height: calc(78vh - 100px);
   }
   .md .carousel div {
-    height: calc(90vh - 100px);
+    height: calc(86vh - 100px);
   }
   img {
     width: 100%;
@@ -81,6 +84,26 @@
   }
   .info {
     padding: 2px 20px 20px 20px;
+  }
+  .ios .info {
+    border-top: 1px solid
+      var(
+        --ion-toolbar-border-color,
+        var(--ion-border-color, var(--ion-color-step-150, rgba(0, 0, 0, 0.2)))
+      );
+  }
+  .md .info {
+    box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    position: relative;
+  }
+  .md .info::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--ion-background-color, #fff);
   }
   h1 {
     font-size: 28px;
