@@ -107,7 +107,7 @@
     bottom: -3px;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 4px;
     background: var(--ion-background-color, #fff);
   }
   h1 {
