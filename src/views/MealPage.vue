@@ -27,6 +27,7 @@
   import MealList from '@/components/MealList.vue'
   import SchoolSelection from '@/modals/SchoolSelection.vue'
   import SimpleInfo from '@/components/SimpleInfo.vue'
+  import MenuInfo from '@/modals/MenuInfo.vue'
 
   export default defineComponent({
     name: 'HomePage',
@@ -46,6 +47,7 @@
       MealList,
       SchoolSelection,
       SimpleInfo,
+      MenuInfo,
     },
     setup() {
       const isWeekday = (dateString: string) => {
@@ -73,6 +75,9 @@
 
         apikey: '36c8f19f762644108af384935752556e',
         schoolSelectionPresentingElement: null,
+
+        menuInfoIndex: 0,
+        menuInfoPresentingElement: null,
       }
     },
     methods: {
@@ -84,7 +89,7 @@
         this.date = date.toISOString()
       },
       openDatepickerModal(): void {
-        (this.$refs.datepickerModal as any).$el.present()
+         (this.$refs.datepickerModal as any).$el.present()
       },
       dismissDatepickerModal(e: Event): void {
         if (e.target != (this.$refs.datepicker as any).$el) {
@@ -102,6 +107,13 @@
         this.schoolCode = schoolCode
         localStorage.setItem('cityCode', cityCode)
         localStorage.setItem('schoolCode', schoolCode)
+      },
+      openMenuInfo(index: number): void {
+        this.menuInfoIndex = index
+        ;(this.$refs.menuInfo as any).$el.present()
+      },
+      dismissMenuInfo(): void {
+        (this.$refs.menuInfo as any).$el.dismiss()
       },
     },
     computed: {
@@ -121,6 +133,7 @@
       if (date.getUTCDay() == 6) date.setDate(date.getDate() - 1)
       this.date = date.toISOString()
       this.schoolSelectionPresentingElement = (this.$refs.page as any).$el
+      this.menuInfoPresentingElement = (this.$refs.page as any).$el
 
       let storedCityCode: string = localStorage.getItem('cityCode') as string
       let storedSchoolCode: string = localStorage.getItem(
@@ -173,6 +186,7 @@
         :cityCode="cityCode"
         :schoolCode="schoolCode"
         :date="date.split('T')[0].replaceAll('-', '')"
+        @openMenuInfo="openMenuInfo"
       />
       <SimpleInfo
         v-else
@@ -201,7 +215,11 @@
           ></ion-icon>
         </ion-button>
       </div>
-      <ion-modal :keep-contents-mounted="true" ref="datepickerModal" @click="dismissDatepickerModal">
+      <ion-modal
+        :keep-contents-mounted="true"
+        ref="datepickerModal"
+        @click="dismissDatepickerModal"
+      >
         <ion-datetime
           id="datetime"
           :max="new Date(`${new Date().getFullYear() + 1}-12-31`).toISOString()"
@@ -218,6 +236,12 @@
         @close="dismissSchoolSelection"
         @changeSchool="changeSchool"
         :apikey="apikey"
+      />
+      <MenuInfo
+        ref="menuInfo"
+        :presentingElement="menuInfoPresentingElement"
+        :index="menuInfoIndex"
+        @close="dismissMenuInfo"
       />
     </ion-content>
   </ion-page>

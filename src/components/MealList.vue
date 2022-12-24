@@ -15,6 +15,7 @@
     name: any
     isFilteredMenu: boolean
     highlighterColor: string
+    index: number
   }
 
   export default defineComponent({
@@ -82,6 +83,7 @@
         meal.forEach((menu) => {
           filteredWord = ''
           let filteredMenu: any = menu
+          let j = 0
           this.filterData.forEach((filter) => {
             if (
               menu.includes(filter.name) &&
@@ -89,10 +91,11 @@
             ) {
               filteredMenu = filteredMenu.replaceAll(
                 filter.name,
-                `[${filter.name}]`
+                `[${filter.name}|${j}]`
               )
               filteredWord += filter.name
             }
+            j++
           })
           let previousHighlighterColor = ''
           filteredMenu = filteredMenu.split(/(\[.+\])/g).map((e: any) => {
@@ -105,9 +108,10 @@
             } while (randomHighlighterColor == previousHighlighterColor)
             previousHighlighterColor = randomHighlighterColor
             return {
-              name: e.replace(/\[|\]/g, ''),
+              name: e.replace(/\[|\|\d+\]/g, ''),
               isFilteredMenu: e.includes('['),
               highlighterColor: randomHighlighterColor,
+              index: e.replace(/\[|\]/g, '').split('|')[1],
             }
           })
           filteredMeal[i] = filteredMenu
@@ -116,6 +120,9 @@
         console.log(filteredMeal)
         return filteredMeal
       },
+      openMenuInfo(index: number): void {
+        this.$emit('openMenuInfo', index)
+      }
     },
     mounted() {
       this.updateMeal()
@@ -149,6 +156,7 @@
           v-if="part.isFilteredMenu"
           :highlighterColor="part.highlighterColor"
           :word="part.name"
+          @click="openMenuInfo(part.index)"
         />
         <span v-else>{{ part.name }}</span>
       </template>
