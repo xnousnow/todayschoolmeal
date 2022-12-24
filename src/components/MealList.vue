@@ -196,11 +196,4 @@
     transform: translate(-50%, -50%);
     width: 80%;
   }
-  filtered-menu {
-    background: linear-gradient(
-      to bottom,
-      transparent 50%,
-      var(--highlighter-color) 50%
-    );
-  }
 </style>
