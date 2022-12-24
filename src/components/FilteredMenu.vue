@@ -41,7 +41,7 @@
   span:hover::after {
     background-color: var(--highlighter-color-tint);
   }
-  span:focus::after {
+  span:active::after {
     background-color: var(--highlighter-color-shade);
   }
 </style>
