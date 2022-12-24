@@ -95,7 +95,7 @@
             }
           })
           let previousHighlighterColor = ''
-          filteredMenu = filteredMenu.split(/(\[.{1}\])/g).map((e: any) => {
+          filteredMenu = filteredMenu.split(/(\[.+\])/g).map((e: any) => {
             let randomHighlighterColor = ''
             do {
               randomHighlighterColor =
