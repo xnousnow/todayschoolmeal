@@ -49,10 +49,6 @@
 </template>
 
 <style scoped>
-  ion-modal {
-    overflow-y: hidden;
-    height: 100vh;
-  }
   .carousel {
     display: flex;
     flex-direction: row;
