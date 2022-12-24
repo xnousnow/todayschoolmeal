@@ -56,10 +56,8 @@
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-behavior: smooth;
-    align-items: center;
-  }
-  .ios .carousel {
     background-color: var(--ion-color-step-300, #edeef0);
+    align-items: center;
   }
   .carousel div {
     scroll-snap-align: start;
