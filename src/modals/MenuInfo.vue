@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { IonModal, IonContent } from '@ionic/vue'
+  import {
+    IonModal,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonButton,
+    IonContent,
+  } from '@ionic/vue'
   import { defineComponent } from 'vue'
 
   import importedFilterData from '@/filterData'
@@ -20,6 +27,10 @@
     },
     components: {
       IonModal,
+      IonHeader,
+      IonToolbar,
+      IonButtons,
+      IonButton,
       IonContent,
     },
   })
