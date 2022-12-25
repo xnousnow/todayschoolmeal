@@ -111,7 +111,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list v-if="!error && !(searchedSchools.length == 0)">
+      <ion-list v-if="!error && searchedSchools.length > 0">
         <ion-card
           v-for="school in searchedSchools"
           :key="(school as any).SD_SCHUL_CODE"
