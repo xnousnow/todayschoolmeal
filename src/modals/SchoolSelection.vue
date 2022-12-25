@@ -106,6 +106,7 @@
           show-clear-button="focus"
           placeholder="초등학교 이름을 입력하세요"
           :debounce="1000"
+          inputmode="search"
           @ionChange="searchSchool($event)"
         ></ion-searchbar>
       </ion-toolbar>

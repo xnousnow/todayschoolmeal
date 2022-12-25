@@ -92,6 +92,7 @@
           show-clear-button="focus"
           placeholder="재료 이름을 입력해 주세요."
           :debounce="200"
+          inputmode="search"
           @ionChange="searchMenu($event)"
         ></ion-searchbar>
       </ion-toolbar>
