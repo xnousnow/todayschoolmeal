@@ -122,7 +122,7 @@
       },
       openMenuInfo(index: number): void {
         this.$emit('openMenuInfo', index)
-      }
+      },
     },
     mounted() {
       this.updateMeal()

@@ -89,7 +89,7 @@
         this.date = date.toISOString()
       },
       openDatepickerModal(): void {
-         (this.$refs.datepickerModal as any).$el.present()
+        (this.$refs.datepickerModal as any).$el.present()
       },
       dismissDatepickerModal(e: Event): void {
         if (e.target != (this.$refs.datepicker as any).$el) {
