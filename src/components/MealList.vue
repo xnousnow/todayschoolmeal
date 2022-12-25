@@ -112,8 +112,12 @@
             return {
               name: e.replace(/\[|\|\d+\]/g, ''),
               isFilteredMenu: e.includes('['),
-              highlighterColor: e.includes('[') ? randomHighlighterColor : undefined,
-              index: e.includes('[') ? parseInt(e.replace(/\[|\]/g, '').split('|')[1]) : undefined,
+              highlighterColor: e.includes('[')
+                ? randomHighlighterColor
+                : undefined,
+              index: e.includes('[')
+                ? parseInt(e.replace(/\[|\]/g, '').split('|')[1])
+                : undefined,
             }
           })
           filteredMeal[i] = filteredMenu
