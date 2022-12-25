@@ -114,13 +114,14 @@
     background: var(--ion-background-color, #fff);
   }
   h1 {
-    font-size: 28px;
-    font-weight: 500;
     line-height: 1.2;
   }
   .ios h1 {
-    font-size: 34px;
-    font-weight: 600;
+    font-weight: 700;
+  }
+  .md h1 {
+    font-size: 28px;
+    font-weight: 500;
   }
   p {
     margin: 0;
