@@ -115,8 +115,12 @@
   }
   h1 {
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.2;
+  }
+  .ios h1 {
+    font-size: 34px;
+    font-weight: 600;
   }
   p {
     margin: 0;
