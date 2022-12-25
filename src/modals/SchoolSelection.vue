@@ -157,6 +157,7 @@
             ? '학교를 검색하면 결과가 나와요.'
             : '인터넷이 연결되어 있는지 확인해 주세요.'
         "
+        :center="true"
       />
     </ion-content>
   </ion-modal>
@@ -185,11 +186,5 @@
   }
   .md p {
     margin-top: 30px;
-  }
-  .ios .SimpleInfo {
-    height: calc(100% - 108px);
-  }
-  .md .SimpleInfo {
-    height: calc(100% - 112px);
   }
 </style>

@@ -109,6 +109,7 @@
         :mdicon="(searchSharp as any)"
         title="재료를 찾을 수 없어요."
         description="맞춤법을 확인해 주세요."
+        :center="true"
       />
     </ion-content>
   </ion-modal>
@@ -128,11 +129,5 @@
   img {
     aspect-ratio: 16 / 9;
     object-fit: cover;
-  }
-  .ios .SimpleInfo {
-    height: calc(100% - 108px);
-  }
-  .md .SimpleInfo {
-    height: calc(100% - 112px);
   }
 </style>

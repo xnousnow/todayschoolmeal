@@ -7,6 +7,7 @@
       mdicon: String,
       title: String,
       description: String,
+      center: Boolean,
     },
     components: {
       IonIcon,
@@ -15,7 +16,7 @@
 </script>
 
 <template>
-  <div>
+  <div :class="{ center: center }">
     <ion-icon :ios="(iosicon as any)" :md="(mdicon as any)"></ion-icon>
     <h1>{{ title }}</h1>
     <p>{{ description }}</p>
@@ -45,5 +46,11 @@
     font-size: 11pt;
     color: var(--ion-color-medium-shade);
     text-align: center;
+  }
+  .ios .center {
+    height: calc(100% - 108px);
+  }
+  .md .center {
+    height: calc(100% - 112px);
   }
 </style>
