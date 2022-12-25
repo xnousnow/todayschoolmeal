@@ -293,13 +293,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 14px;
     width: auto;
+  }
+  ion-modal ion-datetime.ios {
+    border-radius: 14px;
+  }
+  ion-modal.md ion-datetime {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 0;
   }
   @media screen and (max-width: 350px) {
     ion-modal ion-datetime {
       width: 100vw;
-      border-radius: 0;
+      border-radius: 0 !important;
     }
   }
   .center {
