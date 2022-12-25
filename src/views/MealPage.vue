@@ -75,13 +75,9 @@
         cityCode: '',
         schoolCode: '',
 
+        page: null,
         apikey: '36c8f19f762644108af384935752556e',
-        schoolSelectionPresentingElement: null,
-
-        menuSearchPresentingElement: null,
-
         menuInfoIndex: 0,
-        menuInfoPresentingElement: null,
       }
     },
     methods: {
@@ -147,9 +143,6 @@
       if (date.getUTCDay() == 0) date.setDate(date.getDate() + 1)
       if (date.getUTCDay() == 6) date.setDate(date.getDate() - 1)
       this.date = date.toISOString()
-      this.schoolSelectionPresentingElement = (this.$refs.page as any).$el
-      this.menuSearchPresentingElement = (this.$refs.page as any).$el
-      this.menuInfoPresentingElement = (this.$refs.page as any).$el
 
       let storedCityCode: string = localStorage.getItem('cityCode') as string
       let storedSchoolCode: string = localStorage.getItem(
@@ -159,6 +152,7 @@
         this.cityCode = storedCityCode
         this.schoolCode = storedSchoolCode
       }
+      this.page = (this.$refs.page as any).$el
     },
   })
 </script>
@@ -248,20 +242,20 @@
       </ion-modal>
       <SchoolSelection
         ref="schoolSelection"
-        :presentingElement="schoolSelectionPresentingElement"
+        :presentingElement="page"
         @close="dismissSchoolSelection"
         @changeSchool="changeSchool"
         :apikey="apikey"
       />
       <MenuSearch
         ref="menuSearch"
-        :presentingElement="menuSearchPresentingElement"
+        :presentingElement="page"
         @close="dismissMenuSearch"
         @openMenuInfo="openMenuInfoOnSearch"
       />
       <MenuInfo
         ref="menuInfo"
-        :presentingElement="menuInfoPresentingElement"
+        :presentingElement="page"
         :index="menuInfoIndex"
         @close="dismissMenuInfo"
       />
