@@ -163,10 +163,6 @@
 </template>
 
 <style scoped>
-  span {
-    margin-top: 50%;
-    margin-left: 50%;
-  }
   ion-card-header.ios {
     display: flex;
     flex-flow: column-reverse;
