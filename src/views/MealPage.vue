@@ -26,6 +26,7 @@
 
   import MealList from '@/components/MealList.vue'
   import SchoolSelection from '@/modals/SchoolSelection.vue'
+  import MenuSearch from '@/modals/MenuSearch.vue'
   import SimpleInfo from '@/components/SimpleInfo.vue'
   import MenuInfo from '@/modals/MenuInfo.vue'
 
@@ -46,6 +47,7 @@
 
       MealList,
       SchoolSelection,
+      MenuSearch,
       SimpleInfo,
       MenuInfo,
     },
@@ -75,6 +77,8 @@
 
         apikey: '36c8f19f762644108af384935752556e',
         schoolSelectionPresentingElement: null,
+
+        menuSearchPresentingElement: null,
 
         menuInfoIndex: 0,
         menuInfoPresentingElement: null,
@@ -108,6 +112,12 @@
         localStorage.setItem('cityCode', cityCode)
         localStorage.setItem('schoolCode', schoolCode)
       },
+      openMenuSearch(): void {
+        (this.$refs.menuSearch as any).$el.present()
+      },
+      dismissMenuSearch(): void {
+        (this.$refs.menuSearch as any).$el.dismiss()
+      },
       openMenuInfo(index: number): void {
         this.menuInfoIndex = index
         ;(this.$refs.menuInfo as any).$el.present()
@@ -133,6 +143,7 @@
       if (date.getUTCDay() == 6) date.setDate(date.getDate() - 1)
       this.date = date.toISOString()
       this.schoolSelectionPresentingElement = (this.$refs.page as any).$el
+      this.menuSearchPresentingElement = (this.$refs.page as any).$el
       this.menuInfoPresentingElement = (this.$refs.page as any).$el
 
       let storedCityCode: string = localStorage.getItem('cityCode') as string
@@ -158,7 +169,7 @@
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="primary" :collapse="true">
-          <ion-button>
+          <ion-button @click="openMenuSearch()">
             <ion-icon :ios="searchOutline" :md="searchSharp"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -173,7 +184,7 @@
             <ion-button @click="openSchoolSelection()">
               <ion-icon :ios="schoolOutline" :md="schoolSharp"></ion-icon>
             </ion-button>
-            <ion-button>
+            <ion-button @click="openMenuSearch()">
               <ion-icon :ios="searchOutline" :md="searchSharp"></ion-icon>
             </ion-button>
           </ion-buttons>
@@ -236,6 +247,11 @@
         @close="dismissSchoolSelection"
         @changeSchool="changeSchool"
         :apikey="apikey"
+      />
+      <MenuSearch
+        ref="menuSearch"
+        :presentingElement="menuSearchPresentingElement"
+        @close="dismissMenuSearch"
       />
       <MenuInfo
         ref="menuInfo"
