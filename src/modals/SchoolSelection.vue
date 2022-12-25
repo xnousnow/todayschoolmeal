@@ -139,6 +139,7 @@
         </p>
       </ion-list>
       <SimpleInfo
+        v-else
         class="SimpleInfo"
         :iosicon="(searchOutline as any)"
         :mdicon="(searchSharp as any)"
@@ -156,7 +157,6 @@
             ? '학교를 검색하면 결과가 나와요.'
             : '인터넷이 연결되어 있는지 확인해 주세요.'
         "
-        v-else
       />
     </ion-content>
   </ion-modal>

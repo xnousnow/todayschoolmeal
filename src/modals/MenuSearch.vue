@@ -104,12 +104,12 @@
         </ion-card>
       </ion-list>
       <SimpleInfo
+        v-else
         class="SimpleInfo"
         :iosicon="(searchOutline as any)"
         :mdicon="(searchSharp as any)"
         title="재료를 찾을 수 없어요."
         description="맞춤법을 확인해 주세요."
-        v-else
       />
     </ion-content>
   </ion-modal>
