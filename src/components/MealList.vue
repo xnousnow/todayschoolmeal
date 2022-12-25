@@ -15,7 +15,7 @@
     name: any
     isFilteredMenu: boolean
     highlighterColor: string
-    index: number
+    index?: number
   }
 
   export default defineComponent({
@@ -111,7 +111,7 @@
               name: e.replace(/\[|\|\d+\]/g, ''),
               isFilteredMenu: e.includes('['),
               highlighterColor: randomHighlighterColor,
-              index: e.replace(/\[|\]/g, '').split('|')[1],
+              index: e.includes('[') ? parseInt(e.replace(/\[|\]/g, '').split('|')[1]) : undefined,
             }
           })
           filteredMeal[i] = filteredMenu
