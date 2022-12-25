@@ -15,11 +15,6 @@ const filterData: Array<filterMenu> = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
   {
-    name: '나나',
-    images: ['error'],
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  },
-  {
     name: '건파래',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Parae_%28Monostroma%29.jpg/640px-Parae_%28Monostroma%29.jpg',
