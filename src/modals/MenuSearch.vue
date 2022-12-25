@@ -25,7 +25,7 @@
 
   import SimpleInfo from '../components/SimpleInfo.vue'
 
-  import importedFilterData from '@/filterData'
+  import filterData from '@/filterData'
 
   export default defineComponent({
     props: {
@@ -57,17 +57,16 @@
     data() {
       return {
         searchedMenus: [] as Array<filterMenu>,
-        filterData: importedFilterData,
       }
     },
     methods: {
       searchMenu(event: Event): void {
         let query = (event.target as HTMLInputElement).value
         if (!query) {
-          this.searchedMenus = this.filterData
+          this.searchedMenus = filterData
           return
         }
-        this.searchedMenus = this.filterData.filter((menu) => {
+        this.searchedMenus = filterData.filter((menu) => {
           return menu.name.includes(query)
         })
       },

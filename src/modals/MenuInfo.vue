@@ -10,7 +10,7 @@
   } from '@ionic/vue'
   import { defineComponent } from 'vue'
 
-  import importedFilterData from '@/filterData'
+  import filterData from '@/filterData'
 
   export default defineComponent({
     props: {
@@ -18,12 +18,12 @@
     },
     data() {
       return {
-        menu: importedFilterData[this.index as number],
+        menu: filterData[this.index as number],
       }
     },
     watch: {
       index() {
-        this.menu = importedFilterData[this.index as number]
+        this.menu = filterData[this.index as number]
       },
     },
     components: {
