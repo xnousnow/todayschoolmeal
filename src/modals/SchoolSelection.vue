@@ -118,9 +118,9 @@
         >
           <ion-card-header>
             <ion-card-title>{{ (school as any).SCHUL_NM }}</ion-card-title>
-            <ion-card-subtitle>{{
-              (school as any).ORG_RDNMA
-            }}</ion-card-subtitle>
+            <ion-card-subtitle>
+              {{ (school as any).ORG_RDNMA }}
+            </ion-card-subtitle>
           </ion-card-header>
           <ion-button
             fill="clear"
@@ -131,8 +131,9 @@
                 (school as any).SCHUL_NM
               )
             "
-            >이 학교로 선택</ion-button
           >
+            이 학교로 선택
+          </ion-button>
         </ion-card>
         <p>
           찾는 학교가 없나요?<br />지역명이 붙은 공식 이름으로 검색해 보세요.
