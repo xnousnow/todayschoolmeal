@@ -163,12 +163,12 @@
       <ion-toolbar>
         <ion-title>오늘뭐먹지</ion-title>
         <ion-buttons slot="secondary" :collapse="true">
-          <ion-button @click="openSchoolSelection()">
+          <ion-button @click="openSchoolSelection">
             <ion-icon :ios="schoolOutline" :md="schoolSharp"></ion-icon>
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="primary" :collapse="true">
-          <ion-button @click="openMenuSearch()">
+          <ion-button @click="openMenuSearch">
             <ion-icon :ios="searchOutline" :md="searchSharp"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -180,10 +180,10 @@
         <ion-toolbar>
           <ion-title size="large">오늘뭐먹지</ion-title>
           <ion-buttons slot="end">
-            <ion-button @click="openSchoolSelection()">
+            <ion-button @click="openSchoolSelection">
               <ion-icon :ios="schoolOutline" :md="schoolSharp"></ion-icon>
             </ion-button>
-            <ion-button @click="openMenuSearch()">
+            <ion-button @click="openMenuSearch">
               <ion-icon :ios="searchOutline" :md="searchSharp"></ion-icon>
             </ion-button>
           </ion-buttons>
@@ -214,7 +214,7 @@
             slot="icon-only"
           ></ion-icon>
         </ion-button>
-        <button @click="openDatepickerModal()">
+        <button @click="openDatepickerModal">
           <ion-label>{{ formattedDate }}</ion-label>
         </button>
         <ion-button fill="clear" color="dark" @click="changeDate(1)">
