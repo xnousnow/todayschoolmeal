@@ -56,7 +56,8 @@
     },
     data() {
       return {
-        searchedMenus: [] as Array<filterMenu>,
+        searchedMenus: filterData as Array<filterMenu>,
+        filterData: filterData,
       }
     },
     methods: {
@@ -69,6 +70,9 @@
         this.searchedMenus = filterData.filter((menu) => {
           return menu.name.includes(query)
         })
+      },
+      openMenuInfo(index: number): void {
+        this.$emit('openMenuInfo', index)
       },
     },
   })
@@ -94,7 +98,7 @@
     </ion-header>
     <ion-content>
       <ion-list v-if="searchedMenus.length > 0">
-        <ion-card v-for="menu in searchedMenus" :key="menu.name">
+        <ion-card v-for="menu in searchedMenus" :key="menu.name" @click="openMenuInfo(filterData.indexOf(menu))">
           <img :src="menu.images[0]" :alt="`${menu.name}의 모습`" />
           <ion-card-header>
             <ion-card-title>{{ menu.name }}</ion-card-title>

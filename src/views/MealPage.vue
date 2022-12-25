@@ -122,6 +122,11 @@
         this.menuInfoIndex = index
         ;(this.$refs.menuInfo as any).$el.present()
       },
+      openMenuInfoOnSearch(index: number): void {
+        this.menuInfoIndex = index
+        this.dismissMenuSearch()
+        ;(this.$refs.menuInfo as any).$el.present()
+      },
       dismissMenuInfo(): void {
         (this.$refs.menuInfo as any).$el.dismiss()
       },
@@ -252,6 +257,7 @@
         ref="menuSearch"
         :presentingElement="menuSearchPresentingElement"
         @close="dismissMenuSearch"
+        @openMenuInfo="openMenuInfoOnSearch"
       />
       <MenuInfo
         ref="menuInfo"
