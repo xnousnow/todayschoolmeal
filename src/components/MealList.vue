@@ -14,7 +14,7 @@
   interface menuPart {
     name: any
     isFilteredMenu: boolean
-    highlighterColor: string
+    highlighterColor?: string
     index?: number
   }
 
@@ -79,6 +79,7 @@
       filterMeal(meal: Array<string>): Array<Array<menuPart>> {
         let filteredMeal: Array<Array<menuPart>> = new Array(meal.length)
         let filteredWord = ''
+        let previousHighlighterColor = ''
         let i = 0
         meal.forEach((menu) => {
           filteredWord = ''
@@ -97,20 +98,22 @@
             }
             j++
           })
-          let previousHighlighterColor = ''
           filteredMenu = filteredMenu.split(/(\[.+\])/g).map((e: any) => {
             let randomHighlighterColor = ''
-            do {
-              randomHighlighterColor =
-                this.highlighterColors[
-                  Math.floor(Math.random() * this.highlighterColors.length)
-                ]
-            } while (randomHighlighterColor == previousHighlighterColor)
-            previousHighlighterColor = randomHighlighterColor
+            if (e.includes('[')) {
+              console.log(previousHighlighterColor)
+              do {
+                randomHighlighterColor =
+                  this.highlighterColors[
+                    Math.floor(Math.random() * this.highlighterColors.length)
+                  ]
+              } while (randomHighlighterColor == previousHighlighterColor)
+              previousHighlighterColor = randomHighlighterColor
+            }
             return {
               name: e.replace(/\[|\|\d+\]/g, ''),
               isFilteredMenu: e.includes('['),
-              highlighterColor: randomHighlighterColor,
+              highlighterColor: e.includes('[') ? randomHighlighterColor : undefined,
               index: e.includes('[') ? parseInt(e.replace(/\[|\]/g, '').split('|')[1]) : undefined,
             }
           })
