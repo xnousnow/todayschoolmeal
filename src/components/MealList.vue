@@ -100,7 +100,8 @@
           })
           filteredMenu = filteredMenu.split(/(\[.+\])/g).map((e: any) => {
             let randomHighlighterColor = ''
-            if (e.includes('[')) {
+            let isFilteredMenu = e.includes('[')
+            if (isFilteredMenu) {
               do {
                 randomHighlighterColor =
                   this.highlighterColors[
@@ -111,11 +112,11 @@
             }
             return {
               name: e.replace(/\[|\|\d+\]/g, ''),
-              isFilteredMenu: e.includes('['),
-              highlighterColor: e.includes('[')
+              isFilteredMenu: isFilteredMenu,
+              highlighterColor: isFilteredMenu
                 ? randomHighlighterColor
                 : undefined,
-              index: e.includes('[')
+              index: isFilteredMenu
                 ? parseInt(e.replace(/\[|\]/g, '').split('|')[1])
                 : undefined,
             }
