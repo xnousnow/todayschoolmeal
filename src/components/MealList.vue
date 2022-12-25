@@ -13,8 +13,8 @@
 
   interface menuPart {
     name: any
-    isFilteredMenu: boolean
-    highlighterColor?: string
+    isFilteredMenu: boolean | undefined
+    highlighterColor?: string | undefined
     index?: number
   }
 
@@ -101,7 +101,6 @@
           filteredMenu = filteredMenu.split(/(\[.+\])/g).map((e: any) => {
             let randomHighlighterColor = ''
             if (e.includes('[')) {
-              console.log(previousHighlighterColor)
               do {
                 randomHighlighterColor =
                   this.highlighterColors[
@@ -159,7 +158,7 @@
           v-if="part.isFilteredMenu"
           :highlighterColor="part.highlighterColor"
           :word="part.name"
-          @click="openMenuInfo(part.index)"
+          @click="openMenuInfo(part.index!)"
         />
         <span v-else>{{ part.name }}</span>
       </template>
