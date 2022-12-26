@@ -313,7 +313,7 @@
     border-radius: 14px;
   }
   ion-modal.md ion-datetime {
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     border-radius: 0;
   }
   @media screen and (max-width: 350px) {
