@@ -214,9 +214,9 @@
             slot="icon-only"
           ></ion-icon>
         </ion-button>
-        <button @click="openDatepickerModal">
+        <ion-button class="datepickerButton" @click="openDatepickerModal">
           <ion-label>{{ formattedDate }}</ion-label>
-        </button>
+        </ion-button>
         <ion-button fill="clear" color="dark" @click="changeDate(1)">
           <ion-icon
             :ios="chevronForwardOutline"
@@ -274,15 +274,29 @@
     justify-content: center;
     align-items: center;
   }
-  .datepicker ion-button {
+  .datepicker ion-button:has(ion-icon) {
     --padding-start: 0;
     --padding-end: 0;
   }
-  .datepicker button {
-    padding: 8px 14px;
-    font-size: 16px;
-    border-radius: 8px;
-    background-color: var(--ion-color-step-300, #edeef0);
+  .datepickerButton {
+    --color: var(--ion-text-color, #000000) !important;
+  }
+  .ios .datepickerButton {
+    --padding-start: 14px;
+    --padding-end: 14px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    --background: var(--ion-color-step-300, #edeef0);
+    height: auto !important;
+  }
+  .ios .datepickerButton::part(native) {
+    height: auto !important;
+  }
+  .ios .datepickerButton ion-label {
+    --padding: 0;
+  }
+  .md .datepickerButton {
+    --background: var(--ion-toolbar-background, #ffffff) !important;
   }
   ion-modal:has(ion-datetime) {
     --ion-background-color: transparent;
