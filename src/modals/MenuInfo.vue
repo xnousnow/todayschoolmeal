@@ -70,7 +70,7 @@
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-behavior: smooth;
-    background-color: var(--ion-color-step-300, #edeef0);
+    background-color: var(--ion-color-step-100, #edeef0);
     align-items: center;
   }
   .carousel div {
