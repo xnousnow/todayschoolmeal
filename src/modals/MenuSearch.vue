@@ -132,6 +132,7 @@
     margin-bottom: 130px;
   }
   img {
+    width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
