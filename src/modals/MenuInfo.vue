@@ -79,10 +79,35 @@
     width: 100%;
   }
   .ios .carousel div {
-    height: calc(78vh - 100px);
+    height: calc(100vh - 210px);
   }
   .md .carousel div {
-    height: calc(86vh - 100px);
+    height: calc(100vh - 190px);
+  }
+  @media (min-width: 768px) {
+    .carousel div {
+      height: calc(100vh - 290px) !important;
+    }
+  }
+  @media ((min-width: 768px) and (min-height: 1120px)) {
+    .ios .carousel div {
+      height: 820px !important;
+    }
+  }
+  @media ((min-width: 768px) and (max-height: 600px)) {
+    .md .carousel div {
+      height: calc(100vh - 180px) !important;
+    }
+  }
+  @media ((min-width: 768px) and (min-height: 600px) and (max-height: 768px)) {
+    .md .carousel div {
+      height: 320px !important;
+    }
+  }
+  @media ((min-width: 768px) and (min-height: 768px)) {
+    .md .carousel div {
+      height: 420px !important;
+    }
   }
   img {
     width: 100%;
