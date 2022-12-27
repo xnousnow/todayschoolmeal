@@ -200,7 +200,7 @@
       />
       <SimpleInfo
         v-else
-        class="center"
+        class="center mealError"
         :iosicon="schoolOutline"
         :mdicon="schoolSharp"
         title="학교가 선택되지 않았어요."
@@ -328,5 +328,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
+  }
+  .mealError {
+    padding-top: 30px;
   }
 </style>

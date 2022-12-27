@@ -48,9 +48,9 @@
     text-align: center;
   }
   .ios .center {
-    height: calc(100% - 108px);
+    height: calc(100% - 158px);
   }
   .md .center {
-    height: calc(100% - 112px);
+    height: calc(100% - 152px);
   }
 </style>

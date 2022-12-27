@@ -171,6 +171,7 @@
   </ul>
   <SimpleInfo
     v-else
+    class="mealError"
     :iosicon="errorCode == '200' ? clipboardOutline : warningOutline"
     :mdicon="errorCode == '200' ? clipboardSharp : warningSharp"
     :title="
@@ -210,5 +211,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
+  }
+  .mealError {
+    padding-top: 30px;
   }
 </style>
