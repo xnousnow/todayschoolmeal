@@ -207,7 +207,7 @@
         description="오른쪽 위 학교 선택 버튼을 눌러 학교를 선택해 주세요."
       />
       <div class="datepicker">
-        <ion-button fill="clear" color="dark" @click="changeDate(-1)">
+        <ion-button class="datepickerArrow" fill="clear" color="dark" @click="changeDate(-1)">
           <ion-icon
             :ios="chevronBackOutline"
             :md="chevronBackSharp"
@@ -217,7 +217,7 @@
         <ion-button class="datepickerButton" @click="openDatepickerModal">
           <ion-label>{{ formattedDate }}</ion-label>
         </ion-button>
-        <ion-button fill="clear" color="dark" @click="changeDate(1)">
+        <ion-button class="datepickerArrow" fill="clear" color="dark" @click="changeDate(1)">
           <ion-icon
             :ios="chevronForwardOutline"
             :md="chevronForwardSharp"
@@ -226,6 +226,7 @@
         </ion-button>
       </div>
       <ion-modal
+        class="datepickerModal"
         :keep-contents-mounted="true"
         ref="datepickerModal"
         @click="dismissDatepickerModal"
@@ -274,7 +275,7 @@
     justify-content: center;
     align-items: center;
   }
-  .datepicker ion-button:has(ion-icon) {
+  .datepickerArrow {
     --padding-start: 0;
     --padding-end: 0;
   }
@@ -298,7 +299,7 @@
   .md .datepickerButton {
     --background: var(--ion-toolbar-background, #ffffff) !important;
   }
-  ion-modal:has(ion-datetime) {
+  .datepickerModal {
     --ion-background-color: transparent;
     --box-shadow: none;
   }
@@ -309,12 +310,11 @@
     transform: translate(-50%, -50%);
     width: auto;
   }
-  ion-modal ion-datetime.ios {
+  .ios .datepickerModal ion-datetime {
     border-radius: 14px;
   }
-  ion-modal.md ion-datetime {
+  .md .datepickerModal ion-datetime {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-    border-radius: 0;
   }
   @media screen and (max-width: 350px) {
     ion-modal ion-datetime {
