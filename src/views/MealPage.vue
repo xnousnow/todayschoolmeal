@@ -275,9 +275,13 @@
     justify-content: center;
     align-items: center;
   }
-  .datepickerArrow {
+  .ios .datepickerArrow {
     --padding-start: 0;
     --padding-end: 0;
+  }
+  .md .datepickerArrow {
+    --padding-start: 4px;
+    --padding-end: 4px;
   }
   .datepickerButton {
     --color: var(--ion-text-color, #000000) !important;
