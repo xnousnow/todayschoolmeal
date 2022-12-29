@@ -48,78 +48,56 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <div class="carousel">
-        <div v-for="image in menu.images" :key="image">
-          <img :src="image" />
+    <ion-content :scroll-y="false">
+      <div class="wrapper">
+        <div class="carousel">
+          <div v-for="image in menu.images" :key="image">
+            <img :src="image" />
+          </div>
         </div>
-      </div>
-      <div class="info">
-        <h1>{{ menu.name }}</h1>
-        <p>{{ menu.description }}</p>
+        <div class="info">
+          <h1>{{ menu.name }}</h1>
+          <p>{{ menu.description }}</p>
+        </div>
       </div>
     </ion-content>
   </ion-modal>
 </template>
 
 <style scoped>
-  .carousel {
+  .wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    height: calc(100% - 50px);
+  }
+  .carousel {
+    flex: 1;
     scroll-snap-type: x mandatory;
     overflow-x: scroll;
     overflow-y: hidden;
-    scroll-behavior: smooth;
-    background-color: var(--ion-color-step-100, #edeef0);
+    display: flex;
     align-items: center;
   }
   .carousel div {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    width: 100%;
-  }
-  .ios .carousel div {
-    height: calc(100vh - 230px);
-  }
-  .md .carousel div {
-    height: calc(100vh - 190px);
-  }
-  @media (min-width: 768px) {
-    .carousel div {
-      height: calc(100vh - 290px) !important;
-    }
-  }
-  @media ((min-width: 768px) and (min-height: 1120px)) {
-    .ios .carousel div {
-      height: 820px !important;
-    }
-  }
-  @media ((min-width: 768px) and (max-height: 600px)) {
-    .md .carousel div {
-      height: calc(100vh - 180px) !important;
-    }
-  }
-  @media ((min-width: 768px) and (min-height: 600px) and (max-height: 768px)) {
-    .md .carousel div {
-      height: 320px !important;
-    }
-  }
-  @media ((min-width: 768px) and (min-height: 768px)) {
-    .md .carousel div {
-      height: 420px !important;
-    }
-  }
-  img {
+    scroll-snap-align: center;
+    flex: 0 0 100%;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ion-color-step-100, #edeef0);
+  }
+  .carousel div img {
+    max-width: 100%;
+    max-height: 100%;
   }
   .info {
-    padding: 2px 20px 20px 20px;
+    padding: 0 20px;
+    height: 140px;
   }
   .ios .info {
-    border-top: 1px solid
+    border-top: 0.547px solid
       var(
         --ion-toolbar-border-color,
         var(--ion-border-color, var(--ion-color-step-150, rgba(0, 0, 0, 0.2)))
@@ -128,15 +106,6 @@
   .md .info {
     box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     position: relative;
-  }
-  .md .info::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--ion-background-color, #fff);
   }
   h1 {
     line-height: 1.2;
