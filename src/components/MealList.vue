@@ -124,7 +124,6 @@
           filteredMeal[i] = filteredMenu
           i++
         })
-        console.log(filteredMeal)
         return filteredMeal
       },
       openMenuInfo(index: number): void {
