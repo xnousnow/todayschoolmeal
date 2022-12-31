@@ -207,7 +207,12 @@
         description="오른쪽 위 학교 선택 버튼을 눌러 학교를 선택해 주세요."
       />
       <div class="datepicker">
-        <ion-button class="datepickerArrow" fill="clear" color="dark" @click="changeDate(-1)">
+        <ion-button
+          class="datepickerArrow"
+          fill="clear"
+          color="dark"
+          @click="changeDate(-1)"
+        >
           <ion-icon
             :ios="chevronBackOutline"
             :md="chevronBackSharp"
@@ -217,7 +222,12 @@
         <ion-button class="datepickerButton" @click="openDatepickerModal">
           <ion-label>{{ formattedDate }}</ion-label>
         </ion-button>
-        <ion-button class="datepickerArrow" fill="clear" color="dark" @click="changeDate(1)">
+        <ion-button
+          class="datepickerArrow"
+          fill="clear"
+          color="dark"
+          @click="changeDate(1)"
+        >
           <ion-icon
             :ios="chevronForwardOutline"
             :md="chevronForwardSharp"
