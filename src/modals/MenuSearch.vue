@@ -135,6 +135,13 @@
   }
   ion-list {
     margin-bottom: 130px;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  @media screen and (min-width: 500px) {
+    ion-list {
+      grid-template-columns: 1fr 1fr;
+    } 
   }
   img {
     width: 100%;
