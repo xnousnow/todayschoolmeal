@@ -299,6 +299,7 @@
   }
   .datepicker-button {
     --color: var(--ion-text-color, #000000) !important;
+    width: 120px;
   }
   .ios .datepicker-button {
     --padding-start: 14px;
