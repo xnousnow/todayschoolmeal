@@ -111,6 +111,7 @@
         ></ion-searchbar>
       </ion-toolbar>
     </ion-header>
+
     <ion-content>
       <ion-list v-if="!error && searchedSchools.length > 0">
         <ion-card

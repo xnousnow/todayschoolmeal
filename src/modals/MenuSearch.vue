@@ -97,6 +97,7 @@
         ></ion-searchbar>
       </ion-toolbar>
     </ion-header>
+
     <ion-content>
       <ion-list v-if="searchedMenus.length > 0">
         <ion-card

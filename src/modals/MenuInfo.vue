@@ -48,6 +48,7 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
+
     <ion-content :scroll-y="false">
       <div class="wrapper">
         <div class="carousel">
