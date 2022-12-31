@@ -240,7 +240,7 @@
         </ion-button>
       </div>
       <ion-modal
-        class="datepickerModal"
+        class="datepicker-modal"
         :keep-contents-mounted="true"
         ref="datepickerModal"
         @click="dismissDatepickerModal"
@@ -349,7 +349,7 @@
       --ion-color-tint: #353535;
     }
   }
-  .datepickerModal {
+  .datepicker-modal {
     --ion-background-color: transparent;
     --box-shadow: none;
   }
@@ -360,10 +360,10 @@
     transform: translate(-50%, -50%);
     width: auto;
   }
-  .ios .datepickerModal ion-datetime {
+  .ios .datepicker-modal ion-datetime {
     border-radius: 14px;
   }
-  .md .datepickerModal ion-datetime {
+  .md .datepicker-modal ion-datetime {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
   @media screen and (max-width: 350px) {
