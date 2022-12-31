@@ -141,7 +141,7 @@
   @media screen and (min-width: 500px) {
     ion-list {
       grid-template-columns: 1fr 1fr;
-    } 
+    }
   }
   img {
     width: 100%;
