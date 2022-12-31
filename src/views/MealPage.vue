@@ -331,6 +331,24 @@
     --ion-color-shade: #e0e0e0;
     --ion-color-tint: #ffffff;
   }
+  @media (prefers-color-scheme: dark) {
+    .ios .ion-color-white {
+      --ion-color-base: #1f1f1f;
+      --ion-color-base-rgb: 31, 31, 31;
+      --ion-color-contrast: #ffffff;
+      --ion-color-contrast-rgb: 255, 255, 255;
+      --ion-color-shade: #1b1b1b;
+      --ion-color-tint: #353535;
+    }
+    .md .ion-color-white {
+      --ion-color-base: #1f1f1f;
+      --ion-color-base-rgb: 31, 31, 31;
+      --ion-color-contrast: #ffffff;
+      --ion-color-contrast-rgb: 255, 255, 255;
+      --ion-color-shade: #1b1b1b;
+      --ion-color-tint: #353535;
+    }
+  }
   .datepickerModal {
     --ion-background-color: transparent;
     --box-shadow: none;
