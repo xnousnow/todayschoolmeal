@@ -208,7 +208,7 @@
       />
       <div class="datepicker">
         <ion-button
-          class="datepickerArrow"
+          class="datepicker-arrow"
           fill="clear"
           color="dark"
           @click="changeDate(-1)"
@@ -220,14 +220,14 @@
           ></ion-icon>
         </ion-button>
         <ion-button
-          class="datepickerButton"
+          class="datepicker-button"
           color="white"
           @click="openDatepickerModal"
         >
           <ion-label>{{ formattedDate }}</ion-label>
         </ion-button>
         <ion-button
-          class="datepickerArrow"
+          class="datepicker-arrow"
           fill="clear"
           color="dark"
           @click="changeDate(1)"
@@ -289,18 +289,18 @@
     justify-content: center;
     align-items: center;
   }
-  .ios .datepickerArrow {
+  .ios .datepicker-arrow {
     --padding-start: 0;
     --padding-end: 0;
   }
-  .md .datepickerArrow {
+  .md .datepicker-arrow {
     --padding-start: 4px;
     --padding-end: 4px;
   }
-  .datepickerButton {
+  .datepicker-button {
     --color: var(--ion-text-color, #000000) !important;
   }
-  .ios .datepickerButton {
+  .ios .datepicker-button {
     --padding-start: 14px;
     --padding-end: 14px;
     --padding-top: 8px;
@@ -308,10 +308,10 @@
     --background: var(--ion-color-step-300, #edeef0);
     height: auto !important;
   }
-  .ios .datepickerButton::part(native) {
+  .ios .datepicker-button::part(native) {
     height: auto !important;
   }
-  .ios .datepickerButton ion-label {
+  .ios .datepicker-button ion-label {
     --padding: 0;
   }
   .ios .ion-color-white {
