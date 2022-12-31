@@ -219,7 +219,11 @@
             slot="icon-only"
           ></ion-icon>
         </ion-button>
-        <ion-button class="datepickerButton" @click="openDatepickerModal">
+        <ion-button
+          class="datepickerButton"
+          color="white"
+          @click="openDatepickerModal"
+        >
           <ion-label>{{ formattedDate }}</ion-label>
         </ion-button>
         <ion-button
@@ -310,8 +314,21 @@
   .ios .datepickerButton ion-label {
     --padding: 0;
   }
-  .md .datepickerButton {
-    --background: var(--ion-toolbar-background, #ffffff) !important;
+  .ios .ion-color-white {
+    --ion-color-base: #edeef0;
+    --ion-color-base-rgb: 237, 238, 240;
+    --ion-color-contrast: #000000;
+    --ion-color-contrast-rgb: 0, 0, 0;
+    --ion-color-shade: #d1d1d3;
+    --ion-color-tint: #eff0f2;
+  }
+  .md .ion-color-white {
+    --ion-color-base: #ffffff;
+    --ion-color-base-rgb: 255, 255, 255;
+    --ion-color-contrast: #000000;
+    --ion-color-contrast-rgb: 0, 0, 0;
+    --ion-color-shade: #e0e0e0;
+    --ion-color-tint: #ffffff;
   }
   .datepickerModal {
     --ion-background-color: transparent;
