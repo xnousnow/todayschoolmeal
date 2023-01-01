@@ -118,10 +118,9 @@
         this.menuInfoIndex = index
         ;(this.$refs.menuInfo as any).$el.present()
       },
-      openMenuInfoOnSearch(index: number): void {
-        this.menuInfoIndex = index
+      openSearchedMenuInfo(index: number): void {
         this.dismissMenuSearch()
-        ;(this.$refs.menuInfo as any).$el.present()
+        this.openMenuInfo(index)
       },
       dismissMenuInfo(): void {
         (this.$refs.menuInfo as any).$el.dismiss()
@@ -266,7 +265,7 @@
         ref="menuSearch"
         :presentingElement="page"
         @close="dismissMenuSearch"
-        @openMenuInfo="openMenuInfoOnSearch"
+        @openMenuInfo="openSearchedMenuInfo"
       />
       <MenuInfo
         ref="menuInfo"
