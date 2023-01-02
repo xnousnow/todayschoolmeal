@@ -167,9 +167,18 @@
 </template>
 
 <style scoped>
+  ion-content::part(background) {
+    background: var(--ion-item-background, var(--ion-background-color, #fff));
+  }
   ion-card-header.ios {
     display: flex;
     flex-flow: column-reverse;
+  }
+  ion-header.ios {
+    height: 103px;
+  }
+  ion-header.md {
+    height: 106px;
   }
   ion-toolbar:has(ion-searchbar) {
     position: relative;
