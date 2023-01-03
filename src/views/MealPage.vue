@@ -11,6 +11,7 @@
     IonDatetime,
     IonModal,
     IonLabel,
+    IonNav,
   } from '@ionic/vue'
   import {
     schoolOutline,
@@ -44,10 +45,10 @@
       IonDatetime,
       IonModal,
       IonLabel,
+      IonNav,
 
       MealList,
       SchoolSelection,
-      MenuSearch,
       SimpleInfo,
       MenuInfo,
     },
@@ -78,6 +79,7 @@
         page: null,
         apikey: '36c8f19f762644108af384935752556e',
         menuInfoIndex: 0,
+        menuSearch: MenuSearch,
       }
     },
     methods: {
@@ -111,16 +113,9 @@
       openMenuSearch(): void {
         (this.$refs.menuSearch as any).$el.present()
       },
-      dismissMenuSearch(): void {
-        (this.$refs.menuSearch as any).$el.dismiss()
-      },
       openMenuInfo(index: number): void {
         this.menuInfoIndex = index
         ;(this.$refs.menuInfo as any).$el.present()
-      },
-      openSearchedMenuInfo(index: number): void {
-        this.dismissMenuSearch()
-        this.openMenuInfo(index)
       },
       dismissMenuInfo(): void {
         (this.$refs.menuInfo as any).$el.dismiss()
@@ -261,18 +256,16 @@
         @changeSchool="changeSchool"
         :apikey="apikey"
       />
-      <MenuSearch
-        ref="menuSearch"
-        :presentingElement="page"
-        @close="dismissMenuSearch"
-        @openMenuInfo="openSearchedMenuInfo"
-      />
-      <MenuInfo
-        ref="menuInfo"
-        :presentingElement="page"
-        :index="menuInfoIndex"
-        @close="dismissMenuInfo"
-      />
+      <ion-modal ref="menuSearch" :presentingElement="page">
+        <ion-nav :root="menuSearch"></ion-nav>
+      </ion-modal>
+      <ion-modal ref="menuInfo" :presentingElement="page">
+        <MenuInfo
+          :index="menuInfoIndex"
+          :backButton="false"
+          @close="dismissMenuInfo"
+        />
+      </ion-modal>
     </ion-content>
   </ion-page>
 </template>

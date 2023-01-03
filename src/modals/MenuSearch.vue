@@ -6,7 +6,6 @@
   }
 
   import {
-    IonModal,
     IonHeader,
     IonTitle,
     IonButtons,
@@ -15,10 +14,12 @@
     IonSearchbar,
     IonContent,
     IonList,
+    IonNavLink,
     IonCard,
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
+    modalController,
   } from '@ionic/vue'
   import { searchOutline, searchSharp } from 'ionicons/icons'
   import { defineComponent } from 'vue'
@@ -26,13 +27,13 @@
   import SimpleInfo from '../components/SimpleInfo.vue'
 
   import filterData from '@/filterData'
+  import MenuInfo from './MenuInfo.vue'
 
   export default defineComponent({
     props: {
       apikey: String,
     },
     components: {
-      IonModal,
       IonHeader,
       IonTitle,
       IonButtons,
@@ -41,6 +42,7 @@
       IonSearchbar,
       IonContent,
       IonList,
+      IonNavLink,
       IonCard,
       IonCardHeader,
       IonCardTitle,
@@ -58,6 +60,7 @@
       return {
         searchedMenus: filterData as Array<filterMenu>,
         filterData: filterData,
+        menuInfo: MenuInfo,
       }
     },
     methods: {
@@ -71,58 +74,60 @@
           return menu.name.includes(query)
         })
       },
-      openMenuInfo(index: number): void {
-        this.$emit('openMenuInfo', index)
+      close(): void {
+        modalController.dismiss()
       },
     },
   })
 </script>
 
 <template>
-  <ion-modal>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="secondary">
-          <ion-button @click="$emit('close')">취소</ion-button>
-        </ion-buttons>
-        <ion-title>재료 검색</ion-title>
-      </ion-toolbar>
-      <ion-toolbar>
-        <ion-searchbar
-          show-clear-button="focus"
-          placeholder="재료 이름을 입력해 주세요."
-          :debounce="200"
-          inputmode="search"
-          @ionChange="searchMenu($event)"
-        ></ion-searchbar>
-      </ion-toolbar>
-    </ion-header>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <ion-button @click="close">취소</ion-button>
+      </ion-buttons>
+      <ion-title>재료 검색</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar
+        show-clear-button="focus"
+        placeholder="재료 이름을 입력해 주세요."
+        :debounce="200"
+        inputmode="search"
+        @ionChange="searchMenu($event)"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-content>
-      <ion-list v-if="searchedMenus.length > 0">
-        <ion-card
-          v-for="menu in searchedMenus"
-          :key="menu.name"
-          @click="openMenuInfo(filterData.indexOf(menu))"
-        >
+  <ion-content>
+    <ion-list v-if="searchedMenus.length > 0">
+      <ion-nav-link
+        v-for="menu in searchedMenus"
+        :key="menu.name"
+        router-direction="forward"
+        :component="menuInfo"
+        :component-props="{ index: filterData.indexOf(menu), backButton: true }"
+      >
+        <ion-card>
           <img :src="menu.images[0]" :alt="`${menu.name}의 모습`" />
           <ion-card-header>
             <ion-card-title>{{ menu.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>{{ menu.description }}</ion-card-content>
         </ion-card>
-      </ion-list>
-      <SimpleInfo
-        v-else
-        class="SimpleInfo"
-        :iosicon="(searchOutline as any)"
-        :mdicon="(searchSharp as any)"
-        title="재료를 찾을 수 없어요."
-        description="맞춤법을 확인해 주세요."
-        :center="true"
-      />
-    </ion-content>
-  </ion-modal>
+      </ion-nav-link>
+    </ion-list>
+    <SimpleInfo
+      v-else
+      class="SimpleInfo"
+      :iosicon="(searchOutline as any)"
+      :mdicon="(searchSharp as any)"
+      title="재료를 찾을 수 없어요."
+      description="맞춤법을 확인해 주세요."
+      :center="true"
+    />
+  </ion-content>
 </template>
 
 <style scoped>

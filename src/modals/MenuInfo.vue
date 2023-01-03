@@ -1,12 +1,13 @@
 <script lang="ts">
   import {
-    IonModal,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonButtons,
+    IonBackButton,
     IonButton,
     IonContent,
+    modalController,
   } from '@ionic/vue'
   import { defineComponent } from 'vue'
 
@@ -15,10 +16,16 @@
   export default defineComponent({
     props: {
       index: Number,
+      backButton: Boolean,
     },
     data() {
       return {
         menu: filterData[this.index as number],
+      }
+    },
+    methods: {
+      close(): void {
+        modalController.dismiss()
       }
     },
     watch: {
@@ -27,11 +34,11 @@
       },
     },
     components: {
-      IonModal,
       IonHeader,
       IonToolbar,
       IonTitle,
       IonButtons,
+      IonBackButton,
       IonButton,
       IonContent,
     },
@@ -39,30 +46,31 @@
 </script>
 
 <template>
-  <ion-modal>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>재료 정보</ion-title>
-        <ion-buttons slot="secondary">
-          <ion-button @click="$emit('close')">닫기</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons v-if="backButton" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>재료 정보</ion-title>
+      <ion-buttons :slot="backButton ? 'primary' : 'secondary'">
+        <ion-button @click="close">닫기</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-content :scroll-y="false">
-      <div class="wrapper">
-        <div class="carousel">
-          <div v-for="image in menu.images" :key="image">
-            <img :src="image" />
-          </div>
-        </div>
-        <div class="info">
-          <h1>{{ menu.name }}</h1>
-          <p>{{ menu.description }}</p>
+  <ion-content :scroll-y="false">
+    <div class="wrapper">
+      <div class="carousel">
+        <div v-for="image in menu.images" :key="image">
+          <img :src="image" />
         </div>
       </div>
-    </ion-content>
-  </ion-modal>
+      <div class="info">
+        <h1>{{ menu.name }}</h1>
+        <p>{{ menu.description }}</p>
+      </div>
+    </div>
+  </ion-content>
 </template>
 
 <style scoped>
