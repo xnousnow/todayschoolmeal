@@ -49,7 +49,7 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons v-if="backButton" slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
+        <ion-back-button defaultHref="/" text="검색"></ion-back-button>
       </ion-buttons>
       <ion-title>재료 정보</ion-title>
       <ion-buttons :slot="backButton ? 'primary' : 'secondary'">
