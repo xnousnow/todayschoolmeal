@@ -176,7 +176,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content :fullscreen="true">
+    <ion-content :fullscreen="true" :scrollY="false">
       <ion-header collapse="condense">
         <ion-toolbar>
           <ion-title size="large">오늘뭐먹지</ion-title>
