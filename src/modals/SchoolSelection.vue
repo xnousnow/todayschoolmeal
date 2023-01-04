@@ -23,6 +23,7 @@
   export default defineComponent({
     props: {
       apikey: String,
+      selectedSchool: String,
     },
     components: {
       IonModal,
@@ -79,7 +80,7 @@
         schoolCode: string,
         schoolName: string
       ): Promise<void> {
-        this.$emit('changeSchool', cityCode, schoolCode)
+        this.$emit('changeSchool', cityCode, schoolCode, schoolName)
         this.$emit('close')
         let toast = await toastController.create({
           message: `학교가 ${schoolName}로 선택되었어요.`,
@@ -154,11 +155,12 @@
             : '알 수 없는 오류가 일어났어요.'
         "
         :description="
-          errorCode == '200'
+          `${errorCode == '200'
             ? '맞춤법을 확인해 주세요.'
             : errorCode == '000' || searchedSchools.length == 0
-            ? '학교를 검색하면 결과가 나와요.'
-            : '인터넷이 연결되어 있는지 확인해 주세요.'
+            ? '학교명 뒤 \'초등학교\'까지 입력하지 않아도 괜찮아요.'
+            : '인터넷이 연결되어 있는지 확인해 주세요.'}
+            ${selectedSchool ? `현재 선택된 학교는 ${selectedSchool}입니다.` : ''}`
         "
         :center="true"
       />

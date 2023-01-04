@@ -75,6 +75,7 @@
         date: new Date().toISOString(),
         cityCode: '',
         schoolCode: '',
+        schoolName: '',
 
         page: null,
         apikey: '36c8f19f762644108af384935752556e',
@@ -104,11 +105,13 @@
       dismissSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.dismiss()
       },
-      changeSchool(cityCode: string, schoolCode: string): void {
+      changeSchool(cityCode: string, schoolCode: string, schoolName: string): void {
         this.cityCode = cityCode
         this.schoolCode = schoolCode
+        this.schoolName = schoolName
         localStorage.setItem('cityCode', cityCode)
         localStorage.setItem('schoolCode', schoolCode)
+        localStorage.setItem('schoolName', schoolName)
       },
       openMenuSearch(): void {
         (this.$refs.menuSearch as any).$el.present()
@@ -142,9 +145,13 @@
       let storedSchoolCode: string = localStorage.getItem(
         'schoolCode'
       ) as string
-      if (storedCityCode && storedSchoolCode) {
+      let storedSchoolName: string = localStorage.getItem(
+        'schoolName'
+      ) as string
+      if (storedCityCode && storedSchoolCode && storedSchoolName) {
         this.cityCode = storedCityCode
         this.schoolCode = storedSchoolCode
+        this.schoolName = storedSchoolName
       }
       this.page = (this.$refs.page as any).$el
     },
@@ -255,6 +262,7 @@
         @close="dismissSchoolSelection"
         @changeSchool="changeSchool"
         :apikey="apikey"
+        :selectedSchool="schoolName"
       />
       <ion-modal ref="menuSearch" :presentingElement="page">
         <ion-nav :root="menuSearch"></ion-nav>
