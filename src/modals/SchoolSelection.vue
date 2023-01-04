@@ -162,7 +162,6 @@
             : '인터넷이 연결되어 있는지 확인해 주세요.'}
             ${selectedSchool ? `현재 선택된 학교는 ${selectedSchool}입니다.` : ''}`
         "
-        :center="true"
       />
     </ion-content>
   </ion-modal>
@@ -200,5 +199,11 @@
   }
   .md p {
     margin-top: 30px;
+  }
+  .ios .SimpleInfo {
+    height: calc(100% - 158px);
+  }
+  .md .SimpleInfo {
+    height: calc(100% - 152px);
   }
 </style>
