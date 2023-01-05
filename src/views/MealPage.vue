@@ -26,6 +26,7 @@
   import { defineComponent } from 'vue'
 
   import MealList from '@/components/MealList.vue'
+  import FeatureTutorial from '@/modals/FeatureTutorial.vue'
   import SchoolSelection from '@/modals/SchoolSelection.vue'
   import MenuSearch from '@/modals/MenuSearch.vue'
   import SimpleInfo from '@/components/SimpleInfo.vue'
@@ -48,6 +49,7 @@
       IonNav,
 
       MealList,
+      FeatureTutorial,
       SchoolSelection,
       SimpleInfo,
       MenuInfo,
@@ -98,6 +100,9 @@
         if (e.target != (this.$refs.datepicker as any).$el) {
           (this.$refs.datepickerModal as any).$el.dismiss()
         }
+      },
+      dismissFeatureTutorial(): void {
+        (this.$refs.tutorial as any).$el.dismiss()
       },
       openSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.present()
@@ -153,6 +158,7 @@
         this.schoolCode = storedSchoolCode
         this.schoolName = storedSchoolName
       }
+      (this.$refs.tutorial as any).$el.present()
       this.page = (this.$refs.page as any).$el
     },
   })
@@ -256,6 +262,11 @@
           ref="datepicker"
         ></ion-datetime>
       </ion-modal>
+      <FeatureTutorial
+        ref="tutorial"
+        :presentingElement="page"
+        @close="dismissFeatureTutorial"
+      />
       <SchoolSelection
         ref="schoolSelection"
         :presentingElement="page"
