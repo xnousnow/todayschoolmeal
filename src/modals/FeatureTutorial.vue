@@ -114,7 +114,6 @@
 
 <style scoped>
   h1 {
-    margin-top: 40px;
     padding: 20px 16px 6px;
     transform-origin: left center;
     bottom: 0px;
@@ -123,6 +122,12 @@
     font-size: 34px;
     font-weight: 700;
     text-align: center;
+  }
+  .ios h1 {
+    margin-top: 40px;
+  }
+  .md h1 {
+    margin-top: 60px;
   }
   ion-list {
     margin: 20px 40px 40px 37px;
