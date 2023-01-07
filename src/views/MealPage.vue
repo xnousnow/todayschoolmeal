@@ -149,7 +149,7 @@
         this.schoolCode = storedSchoolCode
         this.schoolName = storedSchoolName
       }
-      if (localStorage.getItem('tutorial')) {
+      if (!localStorage.getItem('tutorial')) {
         (this.$refs.tutorial as any).$el.present()
       }
       this.page = (this.$refs.page as any).$el
