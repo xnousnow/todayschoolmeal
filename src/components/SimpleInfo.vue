@@ -32,7 +32,7 @@
     gap: 4px;
   }
   ion-icon {
-    color: var(--ion-color-medium-shade);
+    color: var(--ion-color-step-600, #666666);
     font-size: 3.8rem;
     margin-bottom: 10px;
   }
@@ -44,7 +44,7 @@
   p {
     margin: 0;
     font-size: 11pt;
-    color: var(--ion-color-medium-shade);
+    color: var(--ion-color-step-600, #666666);
     text-align: center;
   }
 </style>

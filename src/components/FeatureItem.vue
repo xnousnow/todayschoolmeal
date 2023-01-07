@@ -55,7 +55,7 @@
     font-size: 15px;
     margin: 0;
     padding: 0;
-    color: var(--ion-color-medium-shade);
+    color: var(--ion-color-step-600, #666666);
     line-height: 1.3;
   }
 </style>
