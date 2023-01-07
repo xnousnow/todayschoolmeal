@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IonIcon } from '@ionic/vue'
+  import { IonIcon, IonButton } from '@ionic/vue'
   import { defineComponent } from 'vue'
 
   export default defineComponent({
@@ -8,6 +8,7 @@
       mdicon: String,
       title: String,
       description: String,
+      button: String,
     },
     components: {
       IonIcon,
@@ -20,6 +21,9 @@
     <ion-icon :ios="(iosicon as any)" :md="(mdicon as any)"></ion-icon>
     <h1>{{ title }}</h1>
     <p>{{ description }}</p>
+    <ion-button v-if="button" @click="$emit('buttonClick')">
+      {{ button }}
+    </ion-button>
   </div>
 </template>
 

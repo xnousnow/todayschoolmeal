@@ -203,8 +203,9 @@
         class="center mealError"
         :iosicon="schoolOutline"
         :mdicon="schoolSharp"
-        title="학교가 선택되지 않았어요."
-        description="오른쪽 위 학교 선택 버튼을 눌러 학교를 선택해 주세요."
+        title="학교를 선택해 주세요."
+        button="학교 선택하기"
+        @buttonClick="openSchoolSelection"
       />
       <div class="datepicker">
         <ion-button
