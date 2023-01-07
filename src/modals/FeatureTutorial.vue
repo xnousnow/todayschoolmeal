@@ -90,6 +90,7 @@
   }
   h1 {
     padding: 20px 16px 6px;
+    margin-top: 40px;
     transform-origin: left center;
     bottom: 0px;
     align-items: flex-end;
@@ -101,15 +102,12 @@
   .ios h1 {
     font-size: 28px;
     font-weight: 700;
-    margin-top: 40px;
   }
   .md h1 {
     font-weight: 500;
     font-size: 28px;
-    margin-top: 60px;
   }
   ion-list {
-    margin: 20px 40px 0 37px;
     padding-bottom: 20px;
     background: transparent;
     display: flex;
@@ -118,10 +116,21 @@
     overflow: scroll;
     flex-grow: 1;
   }
+  .ios ion-list {
+    margin: 20px 40px 0 37px;
+  }
+  .md ion-list {
+    margin: 10px 40px 0 37px;
+  }
   .close-button {
     width: 100%;
-    padding: 20px 22px 60px;
     background: var(--ion-background-color, #fff);
+  }
+  .ios .close-button {
+    padding: 20px 22px 60px;
+  }
+  .md .close-button {
+    padding: 20px 22px 40px;
   }
   ion-button.ios {
     --padding-top: 25px;
