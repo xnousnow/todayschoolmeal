@@ -114,37 +114,6 @@
     overflow: scroll;
     flex-grow: 1;
   }
-  .item {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-  .icon {
-    font-size: 35px;
-  }
-  ion-icon {
-    font-size: 35px;
-  }
-  .description {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-  h2 {
-    font-size: 15px;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
-  }
-  p {
-    font-size: 15px;
-    margin: 0;
-    padding: 0;
-    color: var(--ion-color-medium-shade);
-    word-break: keep-all;
-    line-height: 1.3;
-  }
   .close-button {
     width: 100%;
     padding: 20px 22px 60px;
