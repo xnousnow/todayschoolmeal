@@ -1,6 +1,5 @@
 <script lang="ts">
   import { IonIcon } from '@ionic/vue'
-
   import { defineComponent } from 'vue'
 
   export default defineComponent({

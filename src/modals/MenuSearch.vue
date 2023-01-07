@@ -26,7 +26,6 @@
   import { defineComponent } from 'vue'
 
   import SimpleInfo from '../components/SimpleInfo.vue'
-
   import filterData from '@/filterData'
   import MenuInfo from './MenuInfo.vue'
 

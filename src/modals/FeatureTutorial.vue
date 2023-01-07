@@ -16,7 +16,6 @@
     searchOutline,
     searchSharp,
   } from 'ionicons/icons'
-
   import { defineComponent } from 'vue'
 
   import FeatureItem from '@/components/FeatureItem.vue'
