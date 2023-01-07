@@ -1,7 +1,6 @@
 <script lang="ts">
   import {
     IonModal,
-    IonHeader,
     IonContent,
     IonList,
     modalController,
@@ -41,7 +40,6 @@
     },
     components: {
       IonModal,
-      IonHeader,
       IonContent,
       IonList,
 
@@ -52,7 +50,6 @@
 
 <template>
   <ion-modal>
-    <ion-header></ion-header>
     <ion-content>
       <h1>오늘뭐먹지 시작하기</h1>
       <ion-list lines="none">
