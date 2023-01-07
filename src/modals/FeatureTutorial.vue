@@ -97,11 +97,16 @@
     font-size: 34px;
     font-weight: 700;
     text-align: center;
+    line-height: 1.2;
   }
   .ios h1 {
+    font-size: 28px;
+    font-weight: 700;
     margin-top: 40px;
   }
   .md h1 {
+    font-size: 28px;
+    font-weight: 500;
     margin-top: 60px;
   }
   ion-list {
