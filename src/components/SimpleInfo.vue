@@ -12,6 +12,7 @@
     },
     components: {
       IonIcon,
+      IonButton,
     },
   })
 </script>
