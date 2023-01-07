@@ -103,6 +103,7 @@
       },
       dismissFeatureTutorial(): void {
         (this.$refs.tutorial as any).$el.dismiss()
+        localStorage.setItem('tutorial', 'true')
       },
       openSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.present()
@@ -158,7 +159,9 @@
         this.schoolCode = storedSchoolCode
         this.schoolName = storedSchoolName
       }
-      (this.$refs.tutorial as any).$el.present()
+      if (!localStorage.getItem('tutorial')) {
+        (this.$refs.tutorial as any).$el.present()
+      }
       this.page = (this.$refs.page as any).$el
     },
   })
