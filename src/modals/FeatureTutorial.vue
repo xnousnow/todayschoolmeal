@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { IonModal, IonContent, IonList, modalController } from '@ionic/vue'
+  import {
+    IonModal,
+    IonContent,
+    IonList,
+    modalController,
+    isPlatform,
+  } from '@ionic/vue'
   import {
     restaurantOutline,
     restaurantSharp,
@@ -33,6 +39,11 @@
         localStorage.setItem('tutorial', 'true')
       },
     },
+    computed: {
+      isIos() {
+        return isPlatform('ios')
+      },
+    },
     components: {
       IonModal,
       IonContent,
@@ -47,7 +58,8 @@
   <ion-modal>
     <ion-content>
       <div class="wrapper">
-        <h1>오늘뭐먹지 시작하기</h1>
+        <h1 v-if="isIos">오늘뭐먹지 시작하기</h1>
+        <h1 v-else>환영합니다</h1>
         <ion-list lines="none">
           <FeatureItem
             :iosicon="restaurantOutline"
