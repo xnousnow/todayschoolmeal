@@ -13,7 +13,9 @@
     IonCardHeader,
     IonCardTitle,
     IonCardSubtitle,
+
     toastController,
+    modalController,
   } from '@ionic/vue'
   import { searchOutline, searchSharp } from 'ionicons/icons'
   import { defineComponent } from 'vue'
@@ -89,6 +91,9 @@
         })
         await toast.present()
       },
+      close(): void {
+        modalController.dismiss()
+      },
     },
   })
 </script>
@@ -98,7 +103,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="secondary">
-          <ion-button @click="$emit('close')">취소</ion-button>
+          <ion-button @click="close">취소</ion-button>
         </ion-buttons>
         <ion-title>학교 선택</ion-title>
       </ion-toolbar>

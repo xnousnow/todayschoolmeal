@@ -101,15 +101,8 @@
           (this.$refs.datepickerModal as any).$el.dismiss()
         }
       },
-      dismissFeatureTutorial(): void {
-        (this.$refs.tutorial as any).$el.dismiss()
-        localStorage.setItem('tutorial', 'true')
-      },
       openSchoolSelection(): void {
         (this.$refs.schoolSelection as any).$el.present()
-      },
-      dismissSchoolSelection(): void {
-        (this.$refs.schoolSelection as any).$el.dismiss()
       },
       changeSchool(cityCode: string, schoolCode: string, schoolName: string): void {
         this.cityCode = cityCode
@@ -125,9 +118,6 @@
       openMenuInfo(index: number): void {
         this.menuInfoIndex = index
         ;(this.$refs.menuInfo as any).$el.present()
-      },
-      dismissMenuInfo(): void {
-        (this.$refs.menuInfo as any).$el.dismiss()
       },
     },
     computed: {
@@ -268,12 +258,10 @@
       <FeatureTutorial
         ref="tutorial"
         :presentingElement="page"
-        @close="dismissFeatureTutorial"
       />
       <SchoolSelection
         ref="schoolSelection"
         :presentingElement="page"
-        @close="dismissSchoolSelection"
         @changeSchool="changeSchool"
         :apikey="apikey"
         :selectedSchool="schoolName"
@@ -285,7 +273,6 @@
         <MenuInfo
           :index="menuInfoIndex"
           :backButton="false"
-          @close="dismissMenuInfo"
         />
       </ion-modal>
     </ion-content>

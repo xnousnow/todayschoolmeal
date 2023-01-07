@@ -7,6 +7,7 @@
     IonBackButton,
     IonButton,
     IonContent,
+
     modalController,
   } from '@ionic/vue'
   import { defineComponent } from 'vue'

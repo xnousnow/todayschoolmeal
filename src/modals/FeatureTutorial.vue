@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { IonModal, IonHeader, IonContent, IonList } from '@ionic/vue'
+  import {
+    IonModal,
+    IonHeader,
+    IonContent,
+    IonList,
+    modalController,
+  } from '@ionic/vue'
   import {
     restaurantOutline,
     restaurantSharp,
@@ -30,7 +36,8 @@
     },
     methods: {
       close() {
-        this.$emit('close')
+        modalController.dismiss()
+        localStorage.setItem('tutorial', 'true')
       },
     },
     components: {
