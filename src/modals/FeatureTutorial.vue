@@ -94,7 +94,6 @@
     bottom: 0px;
     align-items: flex-end;
     min-width: 100%;
-    font-size: 34px;
     font-weight: 700;
     text-align: center;
     line-height: 1.2;
@@ -105,8 +104,8 @@
     margin-top: 40px;
   }
   .md h1 {
-    font-size: 28px;
     font-weight: 500;
+    font-size: 28px;
     margin-top: 60px;
   }
   ion-list {
