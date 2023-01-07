@@ -56,7 +56,6 @@
     margin: 0;
     padding: 0;
     color: var(--ion-color-medium-shade);
-    word-break: keep-all;
     line-height: 1.3;
   }
 </style>

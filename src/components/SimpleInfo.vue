@@ -30,7 +30,6 @@
     align-items: center;
     flex-direction: column;
     gap: 4px;
-    word-break: keep-all;
   }
   ion-icon {
     color: var(--ion-color-medium-shade);
