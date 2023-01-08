@@ -83,7 +83,7 @@
         schoolName: string
       ): Promise<void> {
         this.$emit('changeSchool', cityCode, schoolCode, schoolName)
-        this.$emit('close')
+        this.close()
         let toast = await toastController.create({
           message: `학교가 ${schoolName}로 선택되었어요.`,
           duration: 1500,
