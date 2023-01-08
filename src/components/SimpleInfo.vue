@@ -7,8 +7,13 @@
       iosicon: String,
       mdicon: String,
       title: String,
-      description: String,
+      description: [String, Array<string>],
       button: String,
+    },
+    computed: {
+      isDescriptionString(): boolean {
+        return typeof this.description === 'string'
+      },
     },
     components: {
       IonIcon,
@@ -18,10 +23,15 @@
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <ion-icon :ios="(iosicon as any)" :md="(mdicon as any)"></ion-icon>
     <h1>{{ title }}</h1>
-    <p>{{ description }}</p>
+    <div v-if="isDescriptionString">
+      <p>{{ description }}</p>
+    </div>
+    <div v-else>
+      <p v-for="line in description" :key="line">{{ line }}</p>
+    </div>
     <ion-button v-if="button" @click="$emit('buttonClick')">
       {{ button }}
     </ion-button>
@@ -29,7 +39,7 @@
 </template>
 
 <style scoped>
-  div {
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;

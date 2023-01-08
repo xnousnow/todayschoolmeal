@@ -13,7 +13,6 @@
     IonCardHeader,
     IonCardTitle,
     IonCardSubtitle,
-
     toastController,
     modalController,
   } from '@ionic/vue'
@@ -159,14 +158,14 @@
             ? '학교 이름을 검색해 주세요.'
             : '알 수 없는 오류가 일어났어요.'
         "
-        :description="
-          `${errorCode == '200'
+        :description="[
+          errorCode == '200'
             ? '맞춤법을 확인해 주세요.'
             : errorCode == '000' || searchedSchools.length == 0
             ? '학교명 뒤 \'초등학교\'까지 입력하지 않아도 괜찮아요.'
-            : '인터넷이 연결되어 있는지 확인해 주세요.'}
-            ${selectedSchool ? `현재 선택된 학교는 ${selectedSchool}입니다.` : ''}`
-        "
+            : '인터넷이 연결되어 있는지 확인해 주세요.',
+          selectedSchool ? `현재 선택된 학교는 ${selectedSchool}입니다.` : '',
+        ]"
       />
     </ion-content>
   </ion-modal>
