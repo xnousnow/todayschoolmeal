@@ -87,7 +87,7 @@
   .wrapper {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 50px);
+    height: 100%;
   }
   .carousel {
     flex: 1;
