@@ -9,6 +9,7 @@
     IonContent,
 
     modalController,
+    isPlatform,
   } from '@ionic/vue'
   import { defineComponent } from 'vue'
 
@@ -27,7 +28,12 @@
     methods: {
       close(): void {
         modalController.dismiss()
-      }
+      },
+    },
+    computed: {
+      isIos() {
+        return isPlatform('ios')
+      },
     },
     watch: {
       index() {
@@ -50,7 +56,10 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons v-if="backButton" slot="start">
-        <ion-back-button defaultHref="/" text="검색"></ion-back-button>
+        <ion-back-button
+          defaultHref="/"
+          :text="isIos ? '검색' : ''"
+        ></ion-back-button>
       </ion-buttons>
       <ion-title>재료 정보</ion-title>
       <ion-buttons :slot="backButton ? 'primary' : 'secondary'">
