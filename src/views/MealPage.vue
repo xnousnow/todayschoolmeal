@@ -150,7 +150,9 @@
         this.schoolName = storedSchoolName
       }
       if (!localStorage.getItem('tutorial')) {
-        (this.$refs.tutorial as any).$el.present()
+        setTimeout(() => {
+          (this.$refs.tutorial as any).$el.present()
+        }, 1000)
       }
       this.page = (this.$refs.page as any).$el
     },
