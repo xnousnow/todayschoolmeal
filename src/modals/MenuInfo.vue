@@ -105,7 +105,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--ion-color-step-100, #edeef0);
+    background-color: var(--ion-item-background, var(--ion-background-color, #fff));
   }
   .carousel div img {
     max-width: 100%;
