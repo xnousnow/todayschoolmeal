@@ -199,7 +199,7 @@
     text-align: center;
     margin: 0 10px;
     font-size: 11pt;
-    color: var(--ion-color-medium-shade);
+    color: var(--ion-color-step-600, #666666);
   }
   .md p {
     margin-top: 30px;
