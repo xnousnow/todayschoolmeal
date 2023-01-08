@@ -23,7 +23,7 @@
 </script>
 
 <template>
-  <div class="container">
+  <div class="container ion-padding">
     <ion-icon :ios="(iosicon as any)" :md="(mdicon as any)"></ion-icon>
     <h1>{{ title }}</h1>
     <div v-if="isDescriptionString">
