@@ -18,7 +18,11 @@
 <template>
   <div class="item">
     <div class="icon">
-      <ion-icon :ios="(iosicon as any)" :md="(mdicon as any)" color="primary"></ion-icon>
+      <ion-icon
+        :ios="(iosicon as any)"
+        :md="(mdicon as any)"
+        color="primary"
+      ></ion-icon>
     </div>
     <div class="description">
       <h2>{{ title }}</h2>

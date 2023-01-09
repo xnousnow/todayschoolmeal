@@ -7,7 +7,6 @@
     IonBackButton,
     IonButton,
     IonContent,
-
     modalController,
     isPlatform,
   } from '@ionic/vue'
@@ -105,7 +104,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--ion-item-background, var(--ion-background-color, #fff));
+    background-color: var(
+      --ion-item-background,
+      var(--ion-background-color, #fff)
+    );
   }
   .carousel div img {
     max-width: 100%;

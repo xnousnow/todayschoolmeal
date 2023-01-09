@@ -19,7 +19,6 @@
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-
     modalController,
   } from '@ionic/vue'
   import { searchOutline, searchSharp } from 'ionicons/icons'
