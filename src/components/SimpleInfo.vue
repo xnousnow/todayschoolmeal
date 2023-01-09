@@ -30,7 +30,7 @@
       <p>{{ description }}</p>
     </div>
     <div v-else>
-      <p v-for="line in description" :key="line">{{ line }}</p>
+      <p v-for="line in description" :key="line" v-html="line"></p>
     </div>
     <ion-button v-if="button" @click="$emit('buttonClick')">
       {{ button }}

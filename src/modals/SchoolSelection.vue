@@ -164,7 +164,7 @@
             : errorCode == '000' || searchedSchools.length == 0
             ? '학교명 뒤 \'초등학교\'까지 입력하지 않아도 괜찮아요.'
             : '인터넷이 연결되어 있는지 확인해 주세요.',
-          selectedSchool ? `현재 선택된 학교는 ${selectedSchool}입니다.` : '',
+          selectedSchool ? `현재 선택된 학교는 <strong>${selectedSchool}</strong>입니다.` : '',
         ]"
       />
     </ion-content>
