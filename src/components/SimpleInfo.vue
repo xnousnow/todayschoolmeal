@@ -45,6 +45,7 @@
     align-items: center;
     flex-direction: column;
     gap: 4px;
+    text-align: center;
   }
   ion-icon {
     color: var(--ion-color-step-600, #666666);
@@ -60,6 +61,5 @@
     margin: 0;
     font-size: 14px;
     color: var(--ion-color-step-600, #666666);
-    text-align: center;
   }
 </style>
