@@ -198,7 +198,7 @@
   p {
     text-align: center;
     margin: 0 10px;
-    font-size: 11pt;
+    font-size: 14px;
     color: var(--ion-color-step-600, #666666);
   }
   .md p {

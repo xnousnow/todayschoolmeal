@@ -48,17 +48,17 @@
   }
   ion-icon {
     color: var(--ion-color-step-600, #666666);
-    font-size: 3.8rem;
+    font-size: 60px;
     margin-bottom: 10px;
   }
   h1 {
     font-weight: bold;
     margin: 0;
-    font-size: 16pt;
+    font-size: 22px;
   }
   p {
     margin: 0;
-    font-size: 11pt;
+    font-size: 14px;
     color: var(--ion-color-step-600, #666666);
     text-align: center;
   }
